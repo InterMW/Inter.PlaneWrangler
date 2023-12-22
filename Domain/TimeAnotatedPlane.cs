@@ -1,4 +1,5 @@
-namespace Inter.Domain;
+namespace Domain;
+
 public class TimeAnotatedPlane : Plane
 {
     public ulong? SquawkUpdated {get; set;}

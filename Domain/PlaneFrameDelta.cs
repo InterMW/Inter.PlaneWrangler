@@ -1,4 +1,4 @@
-namespace Inter.Domain;
+namespace Domain;
 
 public class PlaneFrameDelta : PlaneFrame
 {

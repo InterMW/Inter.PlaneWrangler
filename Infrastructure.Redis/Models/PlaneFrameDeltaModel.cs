@@ -1,4 +1,4 @@
-namespace Inter.Infrastructure.Redis.Models;
+namespace Infrastructure.Redis.Models;
 
 public class PlaneFrameDeltaModel : PlaneFrameModel 
 {

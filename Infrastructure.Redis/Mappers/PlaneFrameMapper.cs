@@ -1,14 +1,13 @@
-using Inter.Domain;
-using Inter.Infrastructure.Redis.Models;
+using Domain;
+using Infrastructure.Redis.Models;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace Inter.Infrastructure.Redis.Mappers;
+namespace Infrastructure.Redis.Mappers;
+
 public static class PlaneFrameMapper
 {
-    public static PlaneFrame ToDomain(
-        this RedisValue value,
-        PlaneSourceDefintion source)
+    public static PlaneFrame ToDomain(this RedisValue value, PlaneSourceDefintion source)
     {
         if(string.IsNullOrEmpty((string)value))
         {
@@ -16,7 +15,7 @@ public static class PlaneFrameMapper
             {
                 Antenna = source.Antenna,
                 Source = source.Node,
-                Planes = Array.Empty<TimeAnotatedPlane>(),
+                Planes = new TimeAnotatedPlane[0],
                 Now = 0
             };
         }
@@ -74,6 +73,12 @@ public static class PlaneFrameMapper
         };
     }
     public static string ToPayload(this PlaneFrameDeltaModel frame) => JsonConvert.SerializeObject(frame);
-    public static string ToPayload(this PlaneFrameModel frame) => JsonConvert.SerializeObject(frame);
-     
+    public static string ToPayload(this PlaneFrameModel frame) 
+    {
+        var result = JsonConvert.SerializeObject(frame);
+
+        
+        return result;
+
+    } 
 }

@@ -1,9 +1,8 @@
-using Inter.Domain;
-using Inter.Infrastructure.Redis.Models;
+using Domain;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace Inter.Infrastructure.Redis.Mappers;
+namespace Infrastructure.Redis.Mappers;
 
 public static class PlaneMapper
 {
@@ -44,9 +43,15 @@ public static class PlaneMapper
     {
         if(string.IsNullOrEmpty((string)value))
         {
-            return null;
+            return new PlaneModel();
         }
         var dto = JsonConvert.DeserializeObject<PlaneModel>((string)value);
+
+        if( dto is null)
+        {
+            return new PlaneModel();
+        }
+
         var plane = new PlaneModel
         {
             altitude = dto.altitude,
