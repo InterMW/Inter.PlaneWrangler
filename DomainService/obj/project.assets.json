@@ -1,0 +1,130 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Infrastructure.RepositoryCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Infrastructure.RepositoryCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastructure.RepositoryCore.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Common/1.0.0": {
+      "type": "project",
+      "path": "../Common/Common.csproj",
+      "msbuildProject": "../Common/Common.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "Infrastructure.RepositoryCore/1.0.0": {
+      "type": "project",
+      "path": "../Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj",
+      "msbuildProject": "../Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "Common >= 1.0.0",
+      "Domain >= 1.0.0",
+      "Infrastructure.RepositoryCore >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/home/jbmelberg/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/DomainService/DomainService.csproj",
+      "projectName": "DomainService",
+      "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/DomainService/DomainService.csproj",
+      "packagesPath": "/home/jbmelberg/.nuget/packages/",
+      "outputPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/DomainService/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/jbmelberg/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/Common.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/Common.csproj"
+            },
+            "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/Domain.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/Domain.csproj"
+            },
+            "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.417/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
