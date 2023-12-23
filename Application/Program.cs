@@ -7,6 +7,8 @@ using Infrastructure.InfluxDB.Repositories;
 using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Repositories;
 using Infrastructure.RepositoryCore;
+using MelbergFramework.Application.Health;
+using MelbergFramework.Core.Health;
 using MelbergFramework.Infrastructure.InfluxDB;
 using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.Redis;
@@ -19,15 +21,12 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder();
         builder.Services.AddControllers();
-
-        
         
         RegisterDependencies(builder.Services, builder.Configuration);
         var app = builder.Build();
 
         app.UseRouting();
-        app.MapGet("/", () => "Hello World!");
-        app.UseEndpoints( endpoints =>
+        app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
         });
@@ -39,6 +38,9 @@ public class Program
     
     private static void RegisterDependencies(IServiceCollection services, IConfiguration configuration)
     {
+        services.AddHostedService<HealthCheckBackgroundService>();
+        services.AddSingleton<IHealthCheckChecker,HealthCheckChecker>();
+
         RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,PlaneFrameMessage>(services);
         RabbitModule.RegisterMicroConsumer<TickCommandProcessor,TickMessage>(services);
         
