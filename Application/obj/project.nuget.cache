@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+plQ3HtoeTjJauy3ESIbnc7CdpLaqpVdSJYy59PFnf7KPdhuZP3v+xOU25mYbnzBq9L7aAoWrn/WXevsXaeKxw==",
+  "dgSpecHash": "+IjYOTaypSz6ItxO1UF2jaxeB+Oi0U1hlsXEAt27jWP4aRuSSrlQhK8ISUBP+z9udi13Xp41JixFH7GSML3eBg==",
   "success": true,
   "projectFilePath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Application/Application.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,9 @@
     "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.influxdb/6.0.59/melbergframework.infrastructure.influxdb.6.0.59.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.rabbit/6.0.59/melbergframework.infrastructure.rabbit.6.0.59.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.redis/6.0.59/melbergframework.infrastructure.redis.6.0.59.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/microsoft.aspnetcore.jsonpatch/6.0.7/microsoft.aspnetcore.jsonpatch.6.0.7.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/6.0.7/microsoft.aspnetcore.mvc.newtonsoftjson.6.0.7.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore/6.0.0/microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.0/microsoft.entityframeworkcore.abstractions.6.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore.analyzers/6.0.0/microsoft.entityframeworkcore.analyzers.6.0.0.nupkg.sha512",
@@ -52,6 +55,7 @@
     "/home/jbmelberg/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.win32.systemevents/5.0.0/microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/nodatime/3.0.5/nodatime.3.0.5.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/nodatime.serialization.jsonnet/3.0.0/nodatime.serialization.jsonnet.3.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/pipelines.sockets.unofficial/2.2.0/pipelines.sockets.unofficial.2.2.0.nupkg.sha512",

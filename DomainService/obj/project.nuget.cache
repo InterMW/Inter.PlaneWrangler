@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "3JKRtciQM25iJFbY2DXvQsvnjS6tp/K0BDGeDpdkrX/TkGOkT3cAZ42fXYvtL3WU6C+6NX0tAvcS0XjZs5MCjA==",
+  "dgSpecHash": "fOUVefbyMUWVymOcV+0THqYxz+/BvDxRdSD31FgE4EtWUX8crm/TiTon0IS+Ot0Jd0bcF+89sYE8y9tUXDRv4A==",
   "success": true,
   "projectFilePath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/DomainService/DomainService.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/jbmelberg/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

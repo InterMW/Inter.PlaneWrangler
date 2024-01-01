@@ -1,7 +1,10 @@
 using Common;
-using Domain;
 using DomainService;
+using Application.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Application.Responses;
+using System.Diagnostics;
 
 namespace Application;
 
@@ -13,19 +16,20 @@ public class WranglerController
     private readonly IAccessDomainService _service;
     public WranglerController(
         IAccessDomainService service,
-        TimingsOptions timingsOptions)
+        IOptions<TimingsOptions> timingsOptions
+        )
     {
         _service = service;
-        _offset = timingsOptions.CompilationOffsetSecs +
-            timingsOptions.CompilationDurationPredictionSecs;
+        _offset = timingsOptions.Value.CompilationOffsetSecs +
+            timingsOptions.Value.CompilationDurationPredictionSecs;
     }
 
     [HttpGet]
     [Route("frame")]
-    [ProducesResponseType(typeof(PlaneFrame),200)]
+    [ProducesResponseType(typeof(PlaneFrameResponse),200)]
     public async Task<IActionResult> GetFrameAsync([FromQuery] long? time)
     {
-        time = time.HasValue ? time.Value : MaxTime;
+        time ??= MaxTime;
         
         if(time > MaxTime)
         {
@@ -34,12 +38,17 @@ public class WranglerController
 
         var results = await _service.RetrieveRecentPlaneFrame(time.Value);
 
-        return new OkObjectResult(results);
+        var result = new OkObjectResult(results.ToResponse());
+        
+        return result;
     }
+    
+    [HttpGet]
+    [Route("test")]
+    public int Test() => 1;
     
     private long MaxTime =>
         (long) (DateTime.UtcNow
             .Subtract(DateTime.UnixEpoch).TotalSeconds - _offset);
 
-//425 too early
 }

@@ -2,6 +2,7 @@ using System.Collections.Immutable;
 using Common;
 using Domain;
 using Infrastructure.RepositoryCore;
+using Microsoft.Extensions.Options;
 
 namespace DomainService;
 
@@ -14,21 +15,24 @@ public class CompilerDomainService : ICompilerDomainService
 {
     private readonly IPlaneCacheRepository _planeCacheRepository;
     private readonly IPlaneMetadataRepository _planeMetadataRepository;
+    private readonly IPlaneFramePublisher _planeFramePublisher;
     private readonly long _timestampOffset;
 
     public CompilerDomainService(
         IPlaneCacheRepository planeCacheRepository,
         IPlaneMetadataRepository planeMetadataRepository,
-        TimingsOptions timingsOptions)
+        IPlaneFramePublisher planeFramePublisher,
+        IOptions<TimingsOptions> timingsOptions)
     {
         _planeCacheRepository = planeCacheRepository;
         _planeMetadataRepository = planeMetadataRepository;
-        _timestampOffset = timingsOptions.CompilationOffsetSecs;
+        _planeFramePublisher = planeFramePublisher;
+        _timestampOffset = timingsOptions.Value.CompilationOffsetSecs;
     }
 
     public async Task CompilePlanesAsync(long timestamp)
     {
-        var offsetTimestamp = timestamp - _timestampOffset; // look at the previous previous second
+        var offsetTimestamp = timestamp - _timestampOffset; // look at some previous moment
 
         Console.Write($"Congregating {offsetTimestamp}");
 
@@ -41,6 +45,8 @@ public class CompilerDomainService : ICompilerDomainService
         var metadata = CreateMetadataFromFrame(congregatedFrame);
 
         await _planeMetadataRepository.LogPlaneMetadata(metadata);
+        
+        _planeFramePublisher.PublishPlaneFrame(congregatedFrame);
         
         Console.WriteLine($" {metadata.Total}");
     }
@@ -60,7 +66,7 @@ public class CompilerDomainService : ICompilerDomainService
         return totalState;
     }
 
-    private PlaneFrame FilterPlanesIntoFrame(
+    private static PlaneFrame FilterPlanesIntoFrame(
         long timeStamp,
         IDictionary<string, 
         TimeAnotatedPlane> state) => new ()
@@ -71,21 +77,21 @@ public class CompilerDomainService : ICompilerDomainService
             Antenna = "congregator"
         };
 
-    private bool HasValidPositionAndIsNew(TimeAnotatedPlane plane, long timeStamp) =>
+    private static bool HasValidPositionAndIsNew(TimeAnotatedPlane plane, long timeStamp) =>
             plane.Latitude != null && 
             plane.Longitude != null && 
             (( (long)(plane.PositionUpdated ?? 0) / 1000 + 30) > timeStamp);
 
-    private PlaneFrameMetadata CreateMetadataFromFrame(PlaneFrame frame) => new ()
+    private static PlaneFrameMetadata CreateMetadataFromFrame(PlaneFrame frame) => new ()
     {
-        Total = frame.Planes.Count(),
-        Detailed = frame.Planes.Count(),
+        Total = frame.Planes.Length,
+        Detailed = frame.Planes.Length,
         Antenna = frame.Antenna,
         Hostname = frame.Source,
         Timestamp = DateTime.UnixEpoch.AddSeconds(frame.Now)
     };
 
-    private void SafeAdd(Dictionary<string,TimeAnotatedPlane> planeDictionary, TimeAnotatedPlane plane)
+    private static void SafeAdd(Dictionary<string,TimeAnotatedPlane> planeDictionary, TimeAnotatedPlane plane)
     {
         if(!planeDictionary.ContainsKey(plane.HexValue))
         {
@@ -121,11 +127,11 @@ public class CompilerDomainService : ICompilerDomainService
         }
     }
 
-    private ulong BestUpdated(ulong? currentUpdated, ulong? selectedUpdated) => 
+    private static ulong BestUpdated(ulong? currentUpdated, ulong? selectedUpdated) => 
         (currentUpdated ?? 0) > (selectedUpdated ?? 0) ? 
         currentUpdated ?? 0 : selectedUpdated ?? 0;
 
-    private T CompareUpdated<T>(
+    private static T CompareUpdated<T>(
         T currentValue,
         T selectedValue,
         ulong? currentUpdated,
