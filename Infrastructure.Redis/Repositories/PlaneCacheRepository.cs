@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Domain;
 using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Mappers;
@@ -49,6 +50,7 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
             Antenna = "aggregate"
         };
         var planes = payload.ToDomain(sourceDefinition);
+        planes.Now = timestamp;
         return planes; 
     }
 

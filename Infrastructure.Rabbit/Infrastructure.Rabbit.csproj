@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.RepositoryCore\Infrastructure.RepositoryCore.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Infrastructure.RepositoryCore\Infrastructure.RepositoryCore.csproj" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+  		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.59" />
   </ItemGroup>
 
   <PropertyGroup>

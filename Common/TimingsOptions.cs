@@ -6,7 +6,11 @@ public class TimingsOptions
 {
     public const string Timing = "Timing";
     
-    public int CompilationOffsetSecs => 1;
+    [Required]
+    [Range(1,60)]
+    public int CompilationOffsetSecs {get; set;}
     
-    public int CompilationDurationPredictionSecs => 1;
+    [Required]
+    [Range(1,60)]
+    public int CompilationDurationPredictionSecs {get; set;}
 }

@@ -7,7 +7,7 @@ public static class PlaneResponseMapper
     public static PlaneFrameResponse ToResponse(this PlaneFrame model)
     {
         if(model == null)
-            return null;
+            return new PlaneFrameResponse();
         
         return new PlaneFrameResponse
         {
@@ -21,7 +21,7 @@ public static class PlaneResponseMapper
     public static PlaneResponse ToResponse(this Plane model)
     {
         if(model == null)
-            return null;
+            return new PlaneResponse();
         
         return new PlaneResponse
         {

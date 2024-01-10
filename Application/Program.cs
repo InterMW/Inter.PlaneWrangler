@@ -1,9 +1,12 @@
+using Application.Filters;
 using Application.Models;
 using Application.Pillars;
 using Common;
 using DomainService;
 using Infrastructure.InfluxDB.Contexts;
 using Infrastructure.InfluxDB.Repositories;
+using Infrastructure.Rabbit.Messages;
+using Infrastructure.Rabbit.Publishers;
 using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Repositories;
 using Infrastructure.RepositoryCore;
@@ -19,17 +22,34 @@ public class Program
 {
     public static void Main(string[] args) 
     {
+        //Fix latency, its huge
+        ThreadPool.SetMinThreads(40, 40);
         var builder = WebApplication.CreateBuilder();
-        builder.Services.AddControllers();
         
+        builder.Services.AddControllers().AddNewtonsoftJson();
+
         RegisterDependencies(builder.Services, builder.Configuration);
         var app = builder.Build();
+        
+
+        if(app.Environment.IsDevelopment())
+        {
+            app.Configuration["Rabbit:ClientDeclarations:Connections:0:Password"] = app.Configuration["rabbit_pass"];
+        } 
+        
+            app.UseHttpsRedirection();
 
         app.UseRouting();
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
         });
+            app.UseCors(_ => _
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials()
+                );
         app.UseSwagger();
         app.UseSwaggerUI();
 
@@ -43,7 +63,12 @@ public class Program
 
         RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,PlaneFrameMessage>(services);
         RabbitModule.RegisterMicroConsumer<TickCommandProcessor,TickMessage>(services);
-        
+
+        services.AddScoped<IActionResponseTimeStopwatch, ActionResponseTimeStopwatch>();
+        services.AddMvc(options =>
+        {
+            options.Filters.Add(new ResponseTimeFilter());
+        }) ;
         services.AddTransient<IPlaneIngestDomainService,PlaneIngestDomainService>();
         services.AddTransient<ICompilerDomainService, CompilerDomainService>();
         services.AddTransient<IAccessDomainService,AccessDomainService>();
@@ -51,17 +76,17 @@ public class Program
         RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository,PlaneCacheContext>(services);
         InfluxDBModule.LoadInfluxDBRepository<IPlaneMetadataRepository,PlaneFrameMetadataRepository,InfluxDBContext>(services);
 
+        services.AddTransient<IPlaneFramePublisher,PlaneFramePublisher>();
+        RabbitModule.RegisterPublisher<CompletedPlaneFrameMessage>(services);
+
         services.AddSingleton<ILogger>(_ => _.GetRequiredService<ILogger<int>>());
         
-        //
-        // This doesn't work and it makes me sad
-        //
-        //services.Configure<TimingsOptions>(configuration.GetSection(TimingsOptions.Timing));
-        //
-        
+        services.AddOptions<TimingsOptions>()
+            .BindConfiguration(TimingsOptions.Timing)
+            .ValidateDataAnnotations();
+
         services.AddSingleton<TimingsOptions,TimingsOptions>();
         services.AddSwaggerGen();
-
-                
     }
+
 }
