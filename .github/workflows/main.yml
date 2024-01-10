@@ -38,10 +38,10 @@ jobs:
       run: dotnet restore
      - 
       name: Build
-      run: dotnet build --no-restore ${{env.WORKDIR}}/${{env.PROJECT}}
+      run: dotnet build --no-restore
      - 
       name: Publish
-      run: dotnet publish ${{env.WORKDIR}}/${{env.PROJECT}} -c Release -o ./app
+      run: dotnet publish -c Release -o ./app
      - 
       name: Docker Login
       uses: docker/login-action@v1.8.0
