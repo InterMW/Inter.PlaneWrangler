@@ -15,8 +15,6 @@ using MelbergFramework.Core.Health;
 using MelbergFramework.Infrastructure.InfluxDB;
 using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.Redis;
-using System.Diagnostics;
-using System.Threading;
 
 namespace Application;
 
