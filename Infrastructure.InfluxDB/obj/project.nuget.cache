@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0Rroi7MpKyTO92QOPhf4JUL7tTX1/tVNuP6i6ddtA9k36KfNiLobMVKXu/UoO6E9WN+6ZPVc8y1jP1PddFp4nA==",
+  "dgSpecHash": "TftLH4hf5MHnp7WdaYD7aH2+4GPNrQgmw9F8STM8EVRkhbDzH2RiOE1O0WV1EMol8M3u/K8pnuBeTuJ8MmtNUA==",
   "success": true,
   "projectFilePath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.InfluxDB/Infrastructure.InfluxDB.csproj",
   "expectedPackageFiles": [

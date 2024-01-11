@@ -43,10 +43,6 @@ public class WranglerController
         return result;
     }
     
-    [HttpGet]
-    [Route("test")]
-    public int Test() => 1;
-    
     private long MaxTime =>
         (long) (DateTime.UtcNow
             .Subtract(DateTime.UnixEpoch).TotalSeconds - _offset);
