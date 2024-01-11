@@ -10,16 +10,23 @@ public class PlaneIngestProcessor : IStandardConsumer
 {
     private readonly IPlaneIngestDomainService _domainService;
     private readonly IJsonToObjectTranslator<PlaneFrameMessage> _translator;
+    private readonly ILogger _logger;
 
     public PlaneIngestProcessor(
         IPlaneIngestDomainService domainService,
-        IJsonToObjectTranslator<PlaneFrameMessage> translator
+        IJsonToObjectTranslator<PlaneFrameMessage> translator,
+        ILogger logger
         )
     {
         _domainService = domainService;
         _translator = translator;
+        _logger = logger;
     }
 
-    public Task ConsumeMessageAsync(Message message, CancellationToken ct) =>
-        _domainService.IngestPlaneFrameAsync(_translator.Translate(message).ToDomain());
+    public async Task ConsumeMessageAsync(Message message, CancellationToken ct) 
+    {
+        await _domainService.IngestPlaneFrameAsync(_translator.Translate(message).ToDomain());
+
+        _logger.LogInformation("Handled ingest");
+    }
 }
