@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "MelbergFramework.Core/6.0.59": {
+      "MelbergFramework.Core/6.0.60": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "6.0.0"
@@ -14,10 +14,10 @@
           "lib/net6.0/MelbergFramework.Core.dll": {}
         }
       },
-      "MelbergFramework.Infrastructure.Redis/6.0.59": {
+      "MelbergFramework.Infrastructure.Redis/6.0.60": {
         "type": "package",
         "dependencies": {
-          "MelbergFramework.Core": "6.0.59",
+          "MelbergFramework.Core": "6.0.60",
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.Extensions.Configuration": "6.0.0",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
@@ -774,27 +774,27 @@
     }
   },
   "libraries": {
-    "MelbergFramework.Core/6.0.59": {
-      "sha512": "0DajfFpJygK8Q0520LiLKCiFLLMTNMDc4GnZK807fZHoWspttosTRMoF623wccLyAmcHVSn1dm63Jzk5sUUVMw==",
+    "MelbergFramework.Core/6.0.60": {
+      "sha512": "lBR7Vip6VUVmVYj4AxjXSLBYeDzYZ7zYeLjm33XgzBZxQtMbaEAFv7+Y9vPFwmvC0nkprGGxhT8bKlVzERzS6Q==",
       "type": "package",
-      "path": "melbergframework.core/6.0.59",
+      "path": "melbergframework.core/6.0.60",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Core.dll",
-        "melbergframework.core.6.0.59.nupkg.sha512",
+        "melbergframework.core.6.0.60.nupkg.sha512",
         "melbergframework.core.nuspec"
       ]
     },
-    "MelbergFramework.Infrastructure.Redis/6.0.59": {
-      "sha512": "8AZVqTxgUgltXnOB6tEEX4JcRdPuagDj4LcDf5kzS3ulgBRzGl9c6168KP3dRWkRbF3XZfZcQCKPvfoI4BfGDQ==",
+    "MelbergFramework.Infrastructure.Redis/6.0.60": {
+      "sha512": "bVCbcWMqGyAQric4wvkkdgfeoH3xborCdYpQw1w/ZVgn054VCUQPmRNd6wZFFKk4vL7kXjKEaF5oWnuALUGqwg==",
       "type": "package",
-      "path": "melbergframework.infrastructure.redis/6.0.59",
+      "path": "melbergframework.infrastructure.redis/6.0.60",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Infrastructure.Redis.dll",
-        "melbergframework.infrastructure.redis.6.0.59.nupkg.sha512",
+        "melbergframework.infrastructure.redis.6.0.60.nupkg.sha512",
         "melbergframework.infrastructure.redis.nuspec"
       ]
     },
@@ -1875,7 +1875,7 @@
     "net6.0": [
       "Domain >= 1.0.0",
       "Infrastructure.RepositoryCore >= 1.0.0",
-      "MelbergFramework.Infrastructure.Redis >= 6.0.59",
+      "MelbergFramework.Infrastructure.Redis >= 6.0.60",
       "Newtonsoft.Json >= 13.0.1"
     ]
   },
@@ -1925,7 +1925,7 @@
         "dependencies": {
           "MelbergFramework.Infrastructure.Redis": {
             "target": "Package",
-            "version": "[6.0.59, )"
+            "version": "[6.0.60, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

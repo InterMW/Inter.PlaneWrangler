@@ -100,11 +100,11 @@
           "dependencies": {
             "MelbergFramework.Infrastructure.InfluxDB": {
               "target": "Package",
-              "version": "[6.0.59, )"
+              "version": "[6.0.60, )"
             },
             "MelbergFramework.Infrastructure.Redis": {
               "target": "Package",
-              "version": "[6.0.59, )"
+              "version": "[6.0.60, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

@@ -61,7 +61,7 @@
           "lib/netstandard2.0/JsonSubTypes.dll": {}
         }
       },
-      "MelbergFramework.Common/6.0.59": {
+      "MelbergFramework.Common/6.0.60": {
         "type": "package",
         "compile": {
           "lib/net6.0/MelbergFramework.Common.dll": {}
@@ -70,7 +70,7 @@
           "lib/net6.0/MelbergFramework.Common.dll": {}
         }
       },
-      "MelbergFramework.Core/6.0.59": {
+      "MelbergFramework.Core/6.0.60": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "6.0.0"
@@ -82,12 +82,12 @@
           "lib/net6.0/MelbergFramework.Core.dll": {}
         }
       },
-      "MelbergFramework.Infrastructure.InfluxDB/6.0.59": {
+      "MelbergFramework.Infrastructure.InfluxDB/6.0.60": {
         "type": "package",
         "dependencies": {
           "InfluxDB.Client": "3.3.0",
-          "MelbergFramework.Common": "6.0.59",
-          "MelbergFramework.Core": "6.0.59",
+          "MelbergFramework.Common": "6.0.60",
+          "MelbergFramework.Core": "6.0.60",
           "Microsoft.Extensions.Configuration": "6.0.0",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
           "Microsoft.Extensions.Configuration.Json": "6.0.0",
@@ -100,10 +100,10 @@
           "lib/net6.0/MelbergFramework.Infrastructure.InfluxDB.dll": {}
         }
       },
-      "MelbergFramework.Infrastructure.Redis/6.0.59": {
+      "MelbergFramework.Infrastructure.Redis/6.0.60": {
         "type": "package",
         "dependencies": {
-          "MelbergFramework.Core": "6.0.59",
+          "MelbergFramework.Core": "6.0.60",
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.Extensions.Configuration": "6.0.0",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
@@ -1033,51 +1033,51 @@
         "lib/netstandard2.0/JsonSubTypes.dll"
       ]
     },
-    "MelbergFramework.Common/6.0.59": {
-      "sha512": "9S3mmAMD5aO035Z5sCGebaFuTBo7fr/BVQ/w7ln7Y3x7l+zxqmB1rzAbbhFe+VQt82DovsTqEAHVNe3UZHyzBQ==",
+    "MelbergFramework.Common/6.0.60": {
+      "sha512": "Vr+IOMAD8fuXfA5RYDH4/4t5K2A8RKLZIH8DZvgueaYAS/BigrS7doKAKuHOl0v786I02O6Zbud24On03NLdaw==",
       "type": "package",
-      "path": "melbergframework.common/6.0.59",
+      "path": "melbergframework.common/6.0.60",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Common.dll",
-        "melbergframework.common.6.0.59.nupkg.sha512",
+        "melbergframework.common.6.0.60.nupkg.sha512",
         "melbergframework.common.nuspec"
       ]
     },
-    "MelbergFramework.Core/6.0.59": {
-      "sha512": "0DajfFpJygK8Q0520LiLKCiFLLMTNMDc4GnZK807fZHoWspttosTRMoF623wccLyAmcHVSn1dm63Jzk5sUUVMw==",
+    "MelbergFramework.Core/6.0.60": {
+      "sha512": "lBR7Vip6VUVmVYj4AxjXSLBYeDzYZ7zYeLjm33XgzBZxQtMbaEAFv7+Y9vPFwmvC0nkprGGxhT8bKlVzERzS6Q==",
       "type": "package",
-      "path": "melbergframework.core/6.0.59",
+      "path": "melbergframework.core/6.0.60",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Core.dll",
-        "melbergframework.core.6.0.59.nupkg.sha512",
+        "melbergframework.core.6.0.60.nupkg.sha512",
         "melbergframework.core.nuspec"
       ]
     },
-    "MelbergFramework.Infrastructure.InfluxDB/6.0.59": {
-      "sha512": "+3fAylizZSCS6u0vcU9UgcBYZUQJnYZ7Wp+AaWCV5sMyMIomY+XuEB4PG2NfpWCCS7e8M7lVAzQHj4x8hN0b1g==",
+    "MelbergFramework.Infrastructure.InfluxDB/6.0.60": {
+      "sha512": "h4roh3TknfhyV3DeYmxt5L3x5pZQvKXC70AWyIKiWH7QQiyPygIIihrKjIca3J+WbcBxER1B9vanUoKm9YTkUw==",
       "type": "package",
-      "path": "melbergframework.infrastructure.influxdb/6.0.59",
+      "path": "melbergframework.infrastructure.influxdb/6.0.60",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Infrastructure.InfluxDB.dll",
-        "melbergframework.infrastructure.influxdb.6.0.59.nupkg.sha512",
+        "melbergframework.infrastructure.influxdb.6.0.60.nupkg.sha512",
         "melbergframework.infrastructure.influxdb.nuspec"
       ]
     },
-    "MelbergFramework.Infrastructure.Redis/6.0.59": {
-      "sha512": "8AZVqTxgUgltXnOB6tEEX4JcRdPuagDj4LcDf5kzS3ulgBRzGl9c6168KP3dRWkRbF3XZfZcQCKPvfoI4BfGDQ==",
+    "MelbergFramework.Infrastructure.Redis/6.0.60": {
+      "sha512": "bVCbcWMqGyAQric4wvkkdgfeoH3xborCdYpQw1w/ZVgn054VCUQPmRNd6wZFFKk4vL7kXjKEaF5oWnuALUGqwg==",
       "type": "package",
-      "path": "melbergframework.infrastructure.redis/6.0.59",
+      "path": "melbergframework.infrastructure.redis/6.0.60",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Infrastructure.Redis.dll",
-        "melbergframework.infrastructure.redis.6.0.59.nupkg.sha512",
+        "melbergframework.infrastructure.redis.6.0.60.nupkg.sha512",
         "melbergframework.infrastructure.redis.nuspec"
       ]
     },
@@ -2292,8 +2292,8 @@
     "net6.0": [
       "Domain >= 1.0.0",
       "Infrastructure.RepositoryCore >= 1.0.0",
-      "MelbergFramework.Infrastructure.InfluxDB >= 6.0.59",
-      "MelbergFramework.Infrastructure.Redis >= 6.0.59",
+      "MelbergFramework.Infrastructure.InfluxDB >= 6.0.60",
+      "MelbergFramework.Infrastructure.Redis >= 6.0.60",
       "Newtonsoft.Json >= 13.0.1"
     ]
   },
@@ -2343,11 +2343,11 @@
         "dependencies": {
           "MelbergFramework.Infrastructure.InfluxDB": {
             "target": "Package",
-            "version": "[6.0.59, )"
+            "version": "[6.0.60, )"
           },
           "MelbergFramework.Infrastructure.Redis": {
             "target": "Package",
-            "version": "[6.0.59, )"
+            "version": "[6.0.60, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
