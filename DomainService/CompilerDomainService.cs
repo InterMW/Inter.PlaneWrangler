@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Common;
 using Domain;
 using Infrastructure.RepositoryCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace DomainService;
@@ -18,17 +19,21 @@ public class CompilerDomainService : ICompilerDomainService
     private readonly IPlaneMetadataRepository _planeMetadataRepository;
     private readonly IPlaneFramePublisher _planeFramePublisher;
     private readonly long _timestampOffset;
+    private readonly ILogger<CompilerDomainService> _logger;
 
     public CompilerDomainService(
         IPlaneCacheRepository planeCacheRepository,
         IPlaneMetadataRepository planeMetadataRepository,
         IPlaneFramePublisher planeFramePublisher,
-        IOptions<TimingsOptions> timingsOptions)
+        IOptions<TimingsOptions> timingsOptions,
+        ILogger<CompilerDomainService> logger)
+
     {
         _planeCacheRepository = planeCacheRepository;
         _planeMetadataRepository = planeMetadataRepository;
         _planeFramePublisher = planeFramePublisher;
         _timestampOffset = timingsOptions.Value.CompilationOffsetSecs;
+        _logger = logger;
     }
 
     public async Task CompilePlanesAsync(long timestamp)
@@ -36,19 +41,31 @@ public class CompilerDomainService : ICompilerDomainService
         var offsetTimestamp = timestamp - _timestampOffset; // look at some previous moment
 
         Console.Write($"Congregating {offsetTimestamp}");
-
+        
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
         var totalState = await GetPlaneStatesAndCombine(offsetTimestamp);
+        _logger.LogWarning($"It took totalstate {stopwatch.ElapsedMilliseconds}");
+        stopwatch.Restart();
 
         var congregatedFrame = FilterPlanesIntoFrame(offsetTimestamp, totalState);
         
+        _logger.LogWarning($"It took filter {stopwatch.ElapsedMilliseconds}");
+        stopwatch.Restart();
         await _planeCacheRepository.InsertCompiledPlaneFrameAsync(congregatedFrame);
+        _logger.LogWarning($"It took insert {stopwatch.ElapsedMilliseconds}");
+        stopwatch.Restart();
 
         var metadata = CreateMetadataFromFrame(congregatedFrame);
 
        await _planeMetadataRepository.LogPlaneMetadata(metadata);
+        _logger.LogWarning($"It took log {stopwatch.ElapsedMilliseconds}");
+        stopwatch.Restart();
 
         _planeFramePublisher.PublishPlaneFrame(congregatedFrame);
         
+        _logger.LogWarning($"It took publish{stopwatch.ElapsedMilliseconds}");
+        stopwatch.Restart();
         Console.WriteLine($" {metadata.Total}");
     }
 
