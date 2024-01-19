@@ -61,12 +61,13 @@
           "lib/netstandard2.0/JsonSubTypes.dll": {}
         }
       },
-      "MelbergFramework.Application/6.0.60": {
+      "MelbergFramework.Application/6.0.62": {
         "type": "package",
         "dependencies": {
-          "MelbergFramework.Core": "6.0.60",
+          "MelbergFramework.Core": "6.0.62",
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
-          "Microsoft.Extensions.Hosting": "6.0.0"
+          "Microsoft.Extensions.Hosting": "6.0.0",
+          "Microsoft.Extensions.Options.DataAnnotations": "6.0.0"
         },
         "compile": {
           "lib/net6.0/MelbergFramework.Application.dll": {}
@@ -75,7 +76,7 @@
           "lib/net6.0/MelbergFramework.Application.dll": {}
         }
       },
-      "MelbergFramework.Common/6.0.60": {
+      "MelbergFramework.Common/6.0.62": {
         "type": "package",
         "compile": {
           "lib/net6.0/MelbergFramework.Common.dll": {}
@@ -84,7 +85,7 @@
           "lib/net6.0/MelbergFramework.Common.dll": {}
         }
       },
-      "MelbergFramework.Core/6.0.60": {
+      "MelbergFramework.Core/6.0.62": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "6.0.0"
@@ -96,12 +97,12 @@
           "lib/net6.0/MelbergFramework.Core.dll": {}
         }
       },
-      "MelbergFramework.Infrastructure.InfluxDB/6.0.60": {
+      "MelbergFramework.Infrastructure.InfluxDB/6.0.62": {
         "type": "package",
         "dependencies": {
           "InfluxDB.Client": "3.3.0",
-          "MelbergFramework.Common": "6.0.60",
-          "MelbergFramework.Core": "6.0.60",
+          "MelbergFramework.Common": "6.0.62",
+          "MelbergFramework.Core": "6.0.62",
           "Microsoft.Extensions.Configuration": "6.0.0",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
           "Microsoft.Extensions.Configuration.Json": "6.0.0",
@@ -114,11 +115,11 @@
           "lib/net6.0/MelbergFramework.Infrastructure.InfluxDB.dll": {}
         }
       },
-      "MelbergFramework.Infrastructure.Rabbit/6.0.60": {
+      "MelbergFramework.Infrastructure.Rabbit/6.0.62": {
         "type": "package",
         "dependencies": {
-          "MelbergFramework.Application": "6.0.60",
-          "MelbergFramework.Core": "6.0.60",
+          "MelbergFramework.Application": "6.0.62",
+          "MelbergFramework.Core": "6.0.62",
           "Microsoft.Extensions.Configuration": "6.0.0",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
@@ -132,10 +133,10 @@
           "lib/net6.0/MelbergFramework.Infrastructure.Rabbit.dll": {}
         }
       },
-      "MelbergFramework.Infrastructure.Redis/6.0.60": {
+      "MelbergFramework.Infrastructure.Redis/6.0.62": {
         "type": "package",
         "dependencies": {
-          "MelbergFramework.Core": "6.0.60",
+          "MelbergFramework.Core": "6.0.62",
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.Extensions.Configuration": "6.0.0",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
@@ -777,6 +778,24 @@
           }
         }
       },
+      "Microsoft.Extensions.Options.DataAnnotations/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Options": "6.0.0",
+          "System.ComponentModel.Annotations": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.Extensions.Options.DataAnnotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Extensions.Options.DataAnnotations.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Primitives/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -1094,6 +1113,19 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.ComponentModel.Annotations/5.0.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Configuration.ConfigurationManager/5.0.0": {
@@ -1467,8 +1499,8 @@
         "dependencies": {
           "Domain": "1.0.0",
           "Infrastructure.RepositoryCore": "1.0.0",
-          "MelbergFramework.Infrastructure.InfluxDB": "6.0.60",
-          "MelbergFramework.Infrastructure.Redis": "6.0.60",
+          "MelbergFramework.Infrastructure.InfluxDB": "6.0.62",
+          "MelbergFramework.Infrastructure.Redis": "6.0.62",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -1484,7 +1516,7 @@
         "dependencies": {
           "Domain": "1.0.0",
           "Infrastructure.RepositoryCore": "1.0.0",
-          "MelbergFramework.Infrastructure.Rabbit": "6.0.60"
+          "MelbergFramework.Infrastructure.Rabbit": "6.0.62"
         },
         "compile": {
           "bin/placeholder/Infrastructure.Rabbit.dll": {}
@@ -1497,9 +1529,10 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Common": "1.0.0",
           "Domain": "1.0.0",
           "Infrastructure.RepositoryCore": "1.0.0",
-          "MelbergFramework.Infrastructure.Redis": "6.0.60",
+          "MelbergFramework.Infrastructure.Redis": "6.0.62",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -1597,75 +1630,75 @@
         "lib/netstandard2.0/JsonSubTypes.dll"
       ]
     },
-    "MelbergFramework.Application/6.0.60": {
-      "sha512": "z/NffzlziPAsoCkqnl6t9s736EOV1qEP9Ho9sNu8gHxYZQUB2bSozpLmAwh7fIz/mJXiuEGpNfDKo7NT2TSKMg==",
+    "MelbergFramework.Application/6.0.62": {
+      "sha512": "q73dwk8ah7mjBV1orkTpsXh5ZiinwzicZzy8eDjc1jY4EOJGLGsNAEcwt6sleGwTxBX4NwB/AWwvC78oRYInxg==",
       "type": "package",
-      "path": "melbergframework.application/6.0.60",
+      "path": "melbergframework.application/6.0.62",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Application.dll",
-        "melbergframework.application.6.0.60.nupkg.sha512",
+        "melbergframework.application.6.0.62.nupkg.sha512",
         "melbergframework.application.nuspec"
       ]
     },
-    "MelbergFramework.Common/6.0.60": {
-      "sha512": "Vr+IOMAD8fuXfA5RYDH4/4t5K2A8RKLZIH8DZvgueaYAS/BigrS7doKAKuHOl0v786I02O6Zbud24On03NLdaw==",
+    "MelbergFramework.Common/6.0.62": {
+      "sha512": "MM502tV8JjOByqL0aDgG6fNzFpQl7eycoC+wGtpaV4/S0F5viDBoFVU7LrzGuJJ8CneK8sTQjg1ZmHuX2iAj6w==",
       "type": "package",
-      "path": "melbergframework.common/6.0.60",
+      "path": "melbergframework.common/6.0.62",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Common.dll",
-        "melbergframework.common.6.0.60.nupkg.sha512",
+        "melbergframework.common.6.0.62.nupkg.sha512",
         "melbergframework.common.nuspec"
       ]
     },
-    "MelbergFramework.Core/6.0.60": {
-      "sha512": "lBR7Vip6VUVmVYj4AxjXSLBYeDzYZ7zYeLjm33XgzBZxQtMbaEAFv7+Y9vPFwmvC0nkprGGxhT8bKlVzERzS6Q==",
+    "MelbergFramework.Core/6.0.62": {
+      "sha512": "ooQdKjJ0gf71ge0spaRO1XPOpyRXIWxygYWrOS2pO9kWXNuLzcXhWbMZlViV/AuZKNoUTjDqPmA0N6FQZkisOA==",
       "type": "package",
-      "path": "melbergframework.core/6.0.60",
+      "path": "melbergframework.core/6.0.62",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Core.dll",
-        "melbergframework.core.6.0.60.nupkg.sha512",
+        "melbergframework.core.6.0.62.nupkg.sha512",
         "melbergframework.core.nuspec"
       ]
     },
-    "MelbergFramework.Infrastructure.InfluxDB/6.0.60": {
-      "sha512": "h4roh3TknfhyV3DeYmxt5L3x5pZQvKXC70AWyIKiWH7QQiyPygIIihrKjIca3J+WbcBxER1B9vanUoKm9YTkUw==",
+    "MelbergFramework.Infrastructure.InfluxDB/6.0.62": {
+      "sha512": "wMqbpMCbSGKCHTEV3ZAnWZmerDPzsCFMv+wJv1iDY1KW596nGYm0yko7vHy36F/sV/88ROa7nO6fpLSb4zNqag==",
       "type": "package",
-      "path": "melbergframework.infrastructure.influxdb/6.0.60",
+      "path": "melbergframework.infrastructure.influxdb/6.0.62",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Infrastructure.InfluxDB.dll",
-        "melbergframework.infrastructure.influxdb.6.0.60.nupkg.sha512",
+        "melbergframework.infrastructure.influxdb.6.0.62.nupkg.sha512",
         "melbergframework.infrastructure.influxdb.nuspec"
       ]
     },
-    "MelbergFramework.Infrastructure.Rabbit/6.0.60": {
-      "sha512": "B5Qm8pL8rxh7Z6XqMLlcQzyCdgJZRJC4qFAu9ieayE4O/87WWk0sNV0T1YBjneKKQP0VZtvymd7SN4XLUSGpYA==",
+    "MelbergFramework.Infrastructure.Rabbit/6.0.62": {
+      "sha512": "2gC3A1HmACS9N7TvEgCoguZtIWLbpJUQ2qOpoa7qSZCv5+DgTRvNZSZpNlD0t+hssO7gBovyYBvg7wDUpWt9fA==",
       "type": "package",
-      "path": "melbergframework.infrastructure.rabbit/6.0.60",
+      "path": "melbergframework.infrastructure.rabbit/6.0.62",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Infrastructure.Rabbit.dll",
-        "melbergframework.infrastructure.rabbit.6.0.60.nupkg.sha512",
+        "melbergframework.infrastructure.rabbit.6.0.62.nupkg.sha512",
         "melbergframework.infrastructure.rabbit.nuspec"
       ]
     },
-    "MelbergFramework.Infrastructure.Redis/6.0.60": {
-      "sha512": "bVCbcWMqGyAQric4wvkkdgfeoH3xborCdYpQw1w/ZVgn054VCUQPmRNd6wZFFKk4vL7kXjKEaF5oWnuALUGqwg==",
+    "MelbergFramework.Infrastructure.Redis/6.0.62": {
+      "sha512": "zrrKMnA2NVEH102LZ+N6W8IG4YyN/6r9GHsSt1Ip6xebPgO35gWHYqQfa68zahFChGzKziJi4ZFrX4kPWOCLTQ==",
       "type": "package",
-      "path": "melbergframework.infrastructure.redis/6.0.60",
+      "path": "melbergframework.infrastructure.redis/6.0.62",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Infrastructure.Redis.dll",
-        "melbergframework.infrastructure.redis.6.0.60.nupkg.sha512",
+        "melbergframework.infrastructure.redis.6.0.62.nupkg.sha512",
         "melbergframework.infrastructure.redis.nuspec"
       ]
     },
@@ -2643,6 +2676,27 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.Options.DataAnnotations/6.0.0": {
+      "sha512": "Fvs4plZYQT/iF/JsYwP/pppQRvQC211enBjCoIu/355M+aunlzSyzN/n3wPibyY76794MFLkLVT47JCBc3porg==",
+      "type": "package",
+      "path": "microsoft.extensions.options.dataannotations/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Options.DataAnnotations.dll",
+        "lib/net461/Microsoft.Extensions.Options.DataAnnotations.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.DataAnnotations.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.DataAnnotations.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.Options.DataAnnotations.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.Options.DataAnnotations.xml",
+        "microsoft.extensions.options.dataannotations.6.0.0.nupkg.sha512",
+        "microsoft.extensions.options.dataannotations.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Microsoft.Extensions.Primitives/6.0.0": {
       "sha512": "9+PnzmQFfEFNR9J2aDTfJGGupShHjOuGw4VUv+JB044biSHrnmCIMD+mJHmb2H7YryrfBEXDurxQ47gJZdCKNQ==",
       "type": "package",
@@ -3083,6 +3137,96 @@
         "system.collections.immutable.6.0.0.nupkg.sha512",
         "system.collections.immutable.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.ComponentModel.Annotations/5.0.0": {
+      "sha512": "dMkqfy2el8A8/I76n2Hi1oBFEbG1SfxD2l5nhwXV3XjlnOmwxJlQbYpJH4W51odnU9sARCSAgv7S3CyAFMkpYg==",
+      "type": "package",
+      "path": "system.componentmodel.annotations/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net461/System.ComponentModel.Annotations.dll",
+        "lib/netcore50/System.ComponentModel.Annotations.dll",
+        "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "lib/portable-net45+win8/_._",
+        "lib/win8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net461/System.ComponentModel.Annotations.dll",
+        "ref/net461/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/System.ComponentModel.Annotations.dll",
+        "ref/netcore50/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/de/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/es/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/fr/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/it/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ja/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ko/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "ref/portable-net45+win8/_._",
+        "ref/win8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.componentmodel.annotations.5.0.0.nupkg.sha512",
+        "system.componentmodel.annotations.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Configuration.ConfigurationManager/5.0.0": {
@@ -3699,10 +3843,10 @@
       "Infrastructure.Rabbit >= 1.0.0",
       "Infrastructure.Redis >= 1.0.0",
       "Infrastructure.RepositoryCore >= 1.0.0",
-      "MelbergFramework.Application >= 6.0.60",
-      "MelbergFramework.Infrastructure.InfluxDB >= 6.0.60",
-      "MelbergFramework.Infrastructure.Rabbit >= 6.0.60",
-      "MelbergFramework.Infrastructure.Redis >= 6.0.60",
+      "MelbergFramework.Application >= 6.0.62",
+      "MelbergFramework.Infrastructure.InfluxDB >= 6.0.62",
+      "MelbergFramework.Infrastructure.Rabbit >= 6.0.62",
+      "MelbergFramework.Infrastructure.Redis >= 6.0.62",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 6.0.7",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
@@ -3765,19 +3909,19 @@
         "dependencies": {
           "MelbergFramework.Application": {
             "target": "Package",
-            "version": "[6.0.60, )"
+            "version": "[6.0.62, )"
           },
           "MelbergFramework.Infrastructure.InfluxDB": {
             "target": "Package",
-            "version": "[6.0.60, )"
+            "version": "[6.0.62, )"
           },
           "MelbergFramework.Infrastructure.Rabbit": {
             "target": "Package",
-            "version": "[6.0.60, )"
+            "version": "[6.0.62, )"
           },
           "MelbergFramework.Infrastructure.Redis": {
             "target": "Package",
-            "version": "[6.0.60, )"
+            "version": "[6.0.62, )"
           },
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
             "target": "Package",

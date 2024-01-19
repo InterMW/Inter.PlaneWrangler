@@ -10,12 +10,12 @@ public class PlaneIngestProcessor : IStandardConsumer
 {
     private readonly IPlaneIngestDomainService _domainService;
     private readonly IJsonToObjectTranslator<PlaneFrameMessage> _translator;
-    private readonly ILogger _logger;
+    private readonly ILogger<PlaneIngestProcessor> _logger;
 
     public PlaneIngestProcessor(
         IPlaneIngestDomainService domainService,
         IJsonToObjectTranslator<PlaneFrameMessage> translator,
-        ILogger logger
+        ILogger<PlaneIngestProcessor> logger
         )
     {
         _domainService = domainService;

@@ -10,8 +10,7 @@ using Infrastructure.Rabbit.Publishers;
 using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Repositories;
 using Infrastructure.RepositoryCore;
-using MelbergFramework.Application.Health;
-using MelbergFramework.Core.Health;
+using MelbergFramework.Application;
 using MelbergFramework.Infrastructure.InfluxDB;
 using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.Redis;
@@ -22,13 +21,11 @@ public class Program
 {
     public static void Main(string[] args) 
     {
-        //Fix latency, its huge
-        ThreadPool.SetMinThreads(40, 40);
         var builder = WebApplication.CreateBuilder();
         
         builder.Services.AddControllers().AddNewtonsoftJson();
 
-        RegisterDependencies(builder.Services, builder.Configuration);
+        RegisterDependencies(builder.Services, builder.Environment.IsDevelopment());
         var app = builder.Build();
         
 
@@ -37,7 +34,7 @@ public class Program
             app.Configuration["Rabbit:ClientDeclarations:Connections:0:Password"] = app.Configuration["rabbit_pass"];
         } 
         
-            app.UseHttpsRedirection();
+        app.UseHttpsRedirection();
 
         app.UseRouting();
         app.UseEndpoints(endpoints =>
@@ -56,14 +53,12 @@ public class Program
         app.Run();
     }
     
-    private static void RegisterDependencies(IServiceCollection services, IConfiguration configuration)
+    private static void RegisterDependencies(IServiceCollection services, bool isDevelopment)
     {
-        services.AddHostedService<HealthCheckBackgroundService>();
-        services.AddSingleton<IHealthCheckChecker,HealthCheckChecker>();
+        RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,PlaneFrameMessage>(services,!isDevelopment);
+        RabbitModule.RegisterMicroConsumer<TickCommandProcessor,TickMessage>(services, !isDevelopment);
 
-        RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,PlaneFrameMessage>(services);
-        RabbitModule.RegisterMicroConsumer<TickCommandProcessor,TickMessage>(services);
-
+        services.RegisterRequired();
         services.AddScoped<IActionResponseTimeStopwatch, ActionResponseTimeStopwatch>();
         services.AddMvc(options =>
         {
@@ -78,8 +73,6 @@ public class Program
 
         services.AddTransient<IPlaneFramePublisher,PlaneFramePublisher>();
         RabbitModule.RegisterPublisher<CompletedPlaneFrameMessage>(services);
-
-        services.AddSingleton<ILogger>(_ => _.GetRequiredService<ILogger<int>>());
         
         services.AddOptions<TimingsOptions>()
             .BindConfiguration(TimingsOptions.Timing)

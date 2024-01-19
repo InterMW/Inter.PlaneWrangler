@@ -21,12 +21,12 @@ public class CompilerDomainService : ICompilerDomainService
     public CompilerDomainService(
         IPlaneCacheRepository planeCacheRepository,
         IPlaneMetadataRepository planeMetadataRepository,
-        //IPlaneFramePublisher planeFramePublisher,
+        IPlaneFramePublisher planeFramePublisher,
         IOptions<TimingsOptions> timingsOptions)
     {
         _planeCacheRepository = planeCacheRepository;
         _planeMetadataRepository = planeMetadataRepository;
-        //_planeFramePublisher = planeFramePublisher;
+        _planeFramePublisher = planeFramePublisher;
         _timestampOffset = timingsOptions.Value.CompilationOffsetSecs;
     }
 
@@ -45,8 +45,8 @@ public class CompilerDomainService : ICompilerDomainService
         var metadata = CreateMetadataFromFrame(congregatedFrame);
 
         await _planeMetadataRepository.LogPlaneMetadata(metadata);
-        
-        //_planeFramePublisher.PublishPlaneFrame(congregatedFrame);
+
+        _planeFramePublisher.PublishPlaneFrame(congregatedFrame);
         
         Console.WriteLine($" {metadata.Total}");
     }

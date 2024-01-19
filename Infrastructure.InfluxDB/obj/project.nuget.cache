@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6U8Nu1AhwTl0KbXO5l30D9HqINoWeG/8xWBlmyi+cozqX21WC6yl1n2usnHWLMMt+jvsXPCnumcnJISF24Lkaw==",
+  "dgSpecHash": "AynvGWcdzFXAqOcCl35OibPtP+2LsxH25DeKcSydhbtb4+HPonQ9oEBgrqqz7VAOK+s4jboJa5jbkvFq84J6ow==",
   "success": true,
   "projectFilePath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.InfluxDB/Infrastructure.InfluxDB.csproj",
   "expectedPackageFiles": [
@@ -8,10 +8,10 @@
     "/home/jbmelberg/.nuget/packages/influxdb.client/3.3.0/influxdb.client.3.3.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/influxdb.client.core/3.3.0/influxdb.client.core.3.3.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/jsonsubtypes/1.8.0/jsonsubtypes.1.8.0.nupkg.sha512",
-    "/home/jbmelberg/.nuget/packages/melbergframework.common/6.0.60/melbergframework.common.6.0.60.nupkg.sha512",
-    "/home/jbmelberg/.nuget/packages/melbergframework.core/6.0.60/melbergframework.core.6.0.60.nupkg.sha512",
-    "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.influxdb/6.0.60/melbergframework.infrastructure.influxdb.6.0.60.nupkg.sha512",
-    "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.redis/6.0.60/melbergframework.infrastructure.redis.6.0.60.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/melbergframework.common/6.0.62/melbergframework.common.6.0.62.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/melbergframework.core/6.0.62/melbergframework.core.6.0.62.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.influxdb/6.0.62/melbergframework.infrastructure.influxdb.6.0.62.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.redis/6.0.62/melbergframework.infrastructure.redis.6.0.62.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore/6.0.0/microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.0/microsoft.entityframeworkcore.abstractions.6.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore.analyzers/6.0.0/microsoft.entityframeworkcore.analyzers.6.0.0.nupkg.sha512",

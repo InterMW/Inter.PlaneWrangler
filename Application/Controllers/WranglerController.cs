@@ -4,7 +4,6 @@ using Application.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Application.Responses;
-using System.Diagnostics;
 
 namespace Application;
 
@@ -13,6 +12,7 @@ namespace Application;
 public class WranglerController
 {
     private readonly long _offset;
+    private readonly long _range;
     private readonly IAccessDomainService _service;
     public WranglerController(
         IAccessDomainService service,
@@ -22,6 +22,7 @@ public class WranglerController
         _service = service;
         _offset = timingsOptions.Value.CompilationOffsetSecs +
             timingsOptions.Value.CompilationDurationPredictionSecs;
+        _range = timingsOptions.Value.PlaneDocLifetimesSecs;
     }
 
     [HttpGet]
@@ -31,7 +32,8 @@ public class WranglerController
     {
         time ??= MaxTime;
         
-        if(time > MaxTime)
+        //If the time is too high or too low, we won't have the answer
+        if(time > MaxTime || time < MaxTime - _range)
         {
             return new BadRequestResult();
         }

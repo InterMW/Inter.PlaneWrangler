@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "/qwPkM5NLCLokLSluhLQuv+pihlzXS1+3UbHIiCTJC60gxUFVpFTow6yKi0VXr1eyPEHKpK9e5CCcxisO8Ys8A==",
+  "dgSpecHash": "1rccvRBQRLYBADUqhX/N8aQq/NPvLhMGdYgBBfsi6ni+/BgesNq5YV2tSycOk5QZ4E11I+S9YMVeX0S5ugg6Ww==",
   "success": true,
   "projectFilePath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.Redis/Infrastructure.Redis.csproj",
   "expectedPackageFiles": [
-    "/home/jbmelberg/.nuget/packages/melbergframework.core/6.0.60/melbergframework.core.6.0.60.nupkg.sha512",
-    "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.redis/6.0.60/melbergframework.infrastructure.redis.6.0.60.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/melbergframework.core/6.0.62/melbergframework.core.6.0.62.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/melbergframework.infrastructure.redis/6.0.62/melbergframework.infrastructure.redis.6.0.62.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore/6.0.0/microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.0/microsoft.entityframeworkcore.abstractions.6.0.0.nupkg.sha512",
     "/home/jbmelberg/.nuget/packages/microsoft.entityframeworkcore.analyzers/6.0.0/microsoft.entityframeworkcore.analyzers.6.0.0.nupkg.sha512",

@@ -13,4 +13,8 @@ public class TimingsOptions
     [Required]
     [Range(1,60)]
     public int CompilationDurationPredictionSecs {get; set;}
+    
+    [Required]
+    [Range(15,60)]
+    public int PlaneDocLifetimesSecs {get; set;}
 }
