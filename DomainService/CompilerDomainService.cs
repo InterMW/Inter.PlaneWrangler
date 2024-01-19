@@ -45,9 +45,9 @@ public class CompilerDomainService : ICompilerDomainService
 
         var metadata = CreateMetadataFromFrame(congregatedFrame);
 
-        await _planeMetadataRepository.LogPlaneMetadata(metadata);
+       await _planeMetadataRepository.LogPlaneMetadata(metadata);
 
-        //_planeFramePublisher.PublishPlaneFrame(congregatedFrame);
+        _planeFramePublisher.PublishPlaneFrame(congregatedFrame);
         
         Console.WriteLine($" {metadata.Total}");
     }

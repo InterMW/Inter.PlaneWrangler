@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using DomainService;
 using MelbergFramework.Infrastructure.Rabbit.Consumers;
 using MelbergFramework.Infrastructure.Rabbit.Extensions;
@@ -18,8 +19,11 @@ public class TickCommandProcessor : IStandardConsumer
 
     public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
+        var sto = new Stopwatch();
+        sto.Start();
         await _domainService.CompilePlanesAsync(ExtractTimestamp(message.GetTimestamp()));
-        _logger.LogInformation("Handled tick");
+        sto.Stop();
+        _logger.LogWarning($"Handled tick in {sto.ElapsedMilliseconds}");
     } 
     
     private long ExtractTimestamp(DateTime time) => 
