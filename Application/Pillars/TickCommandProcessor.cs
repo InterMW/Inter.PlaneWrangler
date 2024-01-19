@@ -19,7 +19,6 @@ public class TickCommandProcessor : IStandardConsumer
     public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
         await _domainService.CompilePlanesAsync(ExtractTimestamp(message.GetTimestamp()));
-
         _logger.LogInformation("Handled tick");
     } 
     

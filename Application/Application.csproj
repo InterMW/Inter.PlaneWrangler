@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-  		<PackageReference Include="MelbergFramework.Application" Version="6.0.62" />
-      <PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.62" />
-  		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.62" />
-  		<PackageReference Include="MelbergFramework.Infrastructure.Redis" Version="6.0.62" />
+  		<PackageReference Include="MelbergFramework.Application" Version="6.0.63" />
+      <PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.63" />
+  		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.63" />
+  		<PackageReference Include="MelbergFramework.Infrastructure.Redis" Version="6.0.63" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7"/>
   </ItemGroup>

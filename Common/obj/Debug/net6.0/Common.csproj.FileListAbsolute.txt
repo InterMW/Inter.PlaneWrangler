@@ -1,0 +1,12 @@
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/bin/Debug/net6.0/Common.deps.json
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/bin/Debug/net6.0/Common.dll
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/bin/Debug/net6.0/Common.pdb
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/Common.csproj.AssemblyReference.cache
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/Common.GeneratedMSBuildEditorConfig.editorconfig
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/Common.AssemblyInfoInputs.cache
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/Common.AssemblyInfo.cs
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/Common.csproj.CoreCompileInputs.cache
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/Common.dll
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/refint/Common.dll
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/Common.pdb
+/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/Debug/net6.0/ref/Common.dll
