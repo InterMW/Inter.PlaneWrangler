@@ -56,14 +56,15 @@ public class Program
     private static void RegisterDependencies(IServiceCollection services, bool isDevelopment)
     {
         RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,PlaneFrameMessage>(services,!isDevelopment);
-        RabbitModule.RegisterMicroConsumer<TickCommandProcessor,TickMessage>(services, !isDevelopment);
+        RabbitModule.RegisterMicroConsumer<TickCommandProcessor,MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, !isDevelopment);
 
         services.RegisterRequired();
         services.AddScoped<IActionResponseTimeStopwatch, ActionResponseTimeStopwatch>();
         services.AddMvc(options =>
         {
             options.Filters.Add(new ResponseTimeFilter());
-        }) ;
+        });
+
         services.AddTransient<IPlaneIngestDomainService,PlaneIngestDomainService>();
         services.AddTransient<ICompilerDomainService, CompilerDomainService>();
         services.AddTransient<IAccessDomainService,AccessDomainService>();

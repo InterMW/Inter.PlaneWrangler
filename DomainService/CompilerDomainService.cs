@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Diagnostics;
 using Common;
 using Domain;
 using Infrastructure.RepositoryCore;
@@ -46,7 +47,7 @@ public class CompilerDomainService : ICompilerDomainService
 
         await _planeMetadataRepository.LogPlaneMetadata(metadata);
 
-        _planeFramePublisher.PublishPlaneFrame(congregatedFrame);
+        //_planeFramePublisher.PublishPlaneFrame(congregatedFrame);
         
         Console.WriteLine($" {metadata.Total}");
     }
