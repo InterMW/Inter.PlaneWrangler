@@ -1,29 +1,34 @@
 using System.Diagnostics;
+using Common;
 using Domain;
 using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Mappers;
 using Infrastructure.RepositoryCore;
 using MelbergFramework.Infrastructure.Redis.Repository;
+using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Redis.Repositories;
 
 public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCacheRepository
 {
-    private TimeSpan FrameLifespan => new TimeSpan(0,0,45);
+    private readonly TimeSpan _frameLifespan;
 
-    public PlaneCacheRepository(PlaneCacheContext context) : base(context) { }
+    public PlaneCacheRepository(PlaneCacheContext context, IOptions<TimingsOptions> options) : base(context) 
+    {
+        _frameLifespan = new TimeSpan(0,0,options.Value.PlaneDocLifetimesSecs);
+    }
 
     public Task InsertNodePlaneFrameAsync(PlaneFrame frame) =>
         DB.StringSetAsync(
             ToPreAggregateKey(frame),
             frame.ToModel().ToPayload(),
-            FrameLifespan);
+            _frameLifespan);
 
     public Task InsertCompiledPlaneFrameAsync(PlaneFrame frame) =>
         DB.StringSetAsync(
             ToCongregatedKey(frame),
             frame.ToModel().ToPayload(),
-            FrameLifespan
+            _frameLifespan
         );
     
     public async IAsyncEnumerable<PlaneFrame> CollectPlaneStatesAsync(long timestamp)
@@ -60,6 +65,4 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
         $"wrangle_precongregate_{source}_{antenna}_{time}";
     private string ToCongregatedKey(PlaneFrame frame) => ToCongregatedKey(frame.Now);
     private string ToCongregatedKey(long time) => $"wrangle_plane_congregated_{time}";
-
-
 }

@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "MelbergFramework.Core/6.0.60": {
+      "MelbergFramework.Core/6.0.62": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "6.0.0"
@@ -14,10 +14,10 @@
           "lib/net6.0/MelbergFramework.Core.dll": {}
         }
       },
-      "MelbergFramework.Infrastructure.Redis/6.0.60": {
+      "MelbergFramework.Infrastructure.Redis/6.0.62": {
         "type": "package",
         "dependencies": {
-          "MelbergFramework.Core": "6.0.60",
+          "MelbergFramework.Core": "6.0.62",
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.Extensions.Configuration": "6.0.0",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
@@ -748,6 +748,16 @@
           }
         }
       },
+      "Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -774,27 +784,27 @@
     }
   },
   "libraries": {
-    "MelbergFramework.Core/6.0.60": {
-      "sha512": "lBR7Vip6VUVmVYj4AxjXSLBYeDzYZ7zYeLjm33XgzBZxQtMbaEAFv7+Y9vPFwmvC0nkprGGxhT8bKlVzERzS6Q==",
+    "MelbergFramework.Core/6.0.62": {
+      "sha512": "ooQdKjJ0gf71ge0spaRO1XPOpyRXIWxygYWrOS2pO9kWXNuLzcXhWbMZlViV/AuZKNoUTjDqPmA0N6FQZkisOA==",
       "type": "package",
-      "path": "melbergframework.core/6.0.60",
+      "path": "melbergframework.core/6.0.62",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Core.dll",
-        "melbergframework.core.6.0.60.nupkg.sha512",
+        "melbergframework.core.6.0.62.nupkg.sha512",
         "melbergframework.core.nuspec"
       ]
     },
-    "MelbergFramework.Infrastructure.Redis/6.0.60": {
-      "sha512": "bVCbcWMqGyAQric4wvkkdgfeoH3xborCdYpQw1w/ZVgn054VCUQPmRNd6wZFFKk4vL7kXjKEaF5oWnuALUGqwg==",
+    "MelbergFramework.Infrastructure.Redis/6.0.62": {
+      "sha512": "zrrKMnA2NVEH102LZ+N6W8IG4YyN/6r9GHsSt1Ip6xebPgO35gWHYqQfa68zahFChGzKziJi4ZFrX4kPWOCLTQ==",
       "type": "package",
-      "path": "melbergframework.infrastructure.redis/6.0.60",
+      "path": "melbergframework.infrastructure.redis/6.0.62",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net6.0/MelbergFramework.Infrastructure.Redis.dll",
-        "melbergframework.infrastructure.redis.6.0.60.nupkg.sha512",
+        "melbergframework.infrastructure.redis.6.0.62.nupkg.sha512",
         "melbergframework.infrastructure.redis.nuspec"
       ]
     },
@@ -1860,6 +1870,11 @@
         "version.txt"
       ]
     },
+    "Common/1.0.0": {
+      "type": "project",
+      "path": "../Common/Common.csproj",
+      "msbuildProject": "../Common/Common.csproj"
+    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../Domain/Domain.csproj",
@@ -1873,9 +1888,10 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Common >= 1.0.0",
       "Domain >= 1.0.0",
       "Infrastructure.RepositoryCore >= 1.0.0",
-      "MelbergFramework.Infrastructure.Redis >= 6.0.60",
+      "MelbergFramework.Infrastructure.Redis >= 6.0.62",
       "Newtonsoft.Json >= 13.0.1"
     ]
   },
@@ -1904,6 +1920,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/Common.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/Common.csproj"
+            },
             "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/Domain.csproj": {
               "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/Domain.csproj"
             },
@@ -1925,7 +1944,7 @@
         "dependencies": {
           "MelbergFramework.Infrastructure.Redis": {
             "target": "Package",
-            "version": "[6.0.60, )"
+            "version": "[6.0.62, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

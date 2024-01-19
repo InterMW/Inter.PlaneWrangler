@@ -1,5 +1,6 @@
 using DomainService;
 using MelbergFramework.Infrastructure.Rabbit.Consumers;
+using MelbergFramework.Infrastructure.Rabbit.Extensions;
 using MelbergFramework.Infrastructure.Rabbit.Messages;
 
 namespace Application.Pillars;
@@ -7,9 +8,9 @@ namespace Application.Pillars;
 public class TickCommandProcessor : IStandardConsumer
 {
     private readonly ICompilerDomainService _domainService;
-    private readonly ILogger _logger;
+    private readonly ILogger<TickCommandProcessor> _logger;
 
-    public TickCommandProcessor(ICompilerDomainService domainService, ILogger logger)
+    public TickCommandProcessor(ICompilerDomainService domainService, ILogger<TickCommandProcessor> logger)
     {
         _domainService = domainService;
         _logger = logger;
@@ -17,7 +18,7 @@ public class TickCommandProcessor : IStandardConsumer
 
     public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
-        await _domainService.CompilePlanesAsync(ExtractTimestamp(message.Timestamp));
+        await _domainService.CompilePlanesAsync(ExtractTimestamp(message.GetTimestamp()));
 
         _logger.LogInformation("Handled tick");
     } 
