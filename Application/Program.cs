@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Application.Filters;
 using Application.Models;
 using Application.Pillars;
@@ -11,6 +12,7 @@ using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Repositories;
 using Infrastructure.RepositoryCore;
 using MelbergFramework.Application;
+using MelbergFramework.Core.Health;
 using MelbergFramework.Infrastructure.InfluxDB;
 using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.Redis;
@@ -21,6 +23,7 @@ public class Program
 {
     public static void Main(string[] args) 
     {
+
         var builder = WebApplication.CreateBuilder();
         
         builder.Services.AddControllers().AddNewtonsoftJson();
@@ -49,6 +52,23 @@ public class Program
                 );
         app.UseSwagger();
         app.UseSwaggerUI();
+        //Make ready
+
+        var stopwatch = new Stopwatch();
+        stopwatch.Restart();
+        var isOkTask = app.Services.GetService<IHealthCheckChecker>().IsOk();
+
+        isOkTask.Wait();
+        
+        stopwatch.Stop();
+        var isOk = isOkTask.Result;
+
+        if(!isOk)
+        {
+            throw new Exception();  
+        }
+
+        Console.WriteLine($"Became ready in {stopwatch.ElapsedMilliseconds}");
 
         app.Run();
     }
