@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-  		<PackageReference Include="MelbergFramework.Infrastructure.Redis" Version="6.0.64" />
-      <PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.64" />
+  		<PackageReference Include="MelbergFramework.Infrastructure.Redis" Version="6.0.65" />
+      <PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.65" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
   </ItemGroup>
 
