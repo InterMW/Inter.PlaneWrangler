@@ -78,9 +78,9 @@ public class Program
     private static void RegisterDependencies(IServiceCollection services, bool isDevelopment)
     {
         RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,PlaneFrameMessage>(services,!isDevelopment);
-        RabbitModule.RegisterMicroConsumer<
-            TickCommandProcessor,
-            MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, !isDevelopment);
+        //RabbitModule.RegisterMicroConsumer<
+        //    TickCommandProcessor,
+        //    MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, !isDevelopment);
 
         services.RegisterRequired();
         services.AddScoped<IActionResponseTimeStopwatch, ActionResponseTimeStopwatch>();
