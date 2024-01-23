@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "/home/jbmelberg/.nuget/packages/": {}
+    "/home/codespace/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj",
+      "projectUniqueName": "/workspaces/Inter.PlaneWrangler/Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj",
       "projectName": "Infrastructure.RepositoryCore",
-      "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj",
-      "packagesPath": "/home/jbmelberg/.nuget/packages/",
-      "outputPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.RepositoryCore/obj/",
+      "projectPath": "/workspaces/Inter.PlaneWrangler/Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj",
+      "packagesPath": "/home/codespace/.nuget/packages/",
+      "outputPath": "/workspaces/Inter.PlaneWrangler/Infrastructure.RepositoryCore/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/jbmelberg/.nuget/NuGet/NuGet.Config"
+        "/home/codespace/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -51,8 +51,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/Domain.csproj": {
-              "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/Domain.csproj"
+            "/workspaces/Inter.PlaneWrangler/Domain/Domain.csproj": {
+              "projectPath": "/workspaces/Inter.PlaneWrangler/Domain/Domain.csproj"
             }
           }
         }
@@ -77,12 +77,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.20, 6.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.20, 6.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.418/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/dotnet/7.0.306/sdk/7.0.306/RuntimeIdentifierGraph.json"
       }
     }
   }
