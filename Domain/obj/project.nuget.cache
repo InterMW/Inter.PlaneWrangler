@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "cSxXzBa3yEEJYfe5zyH7GymtFRuJ0AdlXeZQNRx584c994383UUAyxRvHeRlfe0UTmWxrFZHeZa9lqvfGKXz/w==",
+  "dgSpecHash": "He/At4yphdnyXIu2IYuvGd54gikrTJF/LUFZdzTVJu8tpvsbJp1FEpjXIspx3+u7jBbye5Mri5Nm+g+iHt2MIA==",
   "success": true,
-  "projectFilePath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/workspaces/Inter.PlaneWrangler/Domain/Domain.csproj",
+  "expectedPackageFiles": [
+    "/home/codespace/.nuget/packages/microsoft.netcore.app.ref/6.0.20/microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.20/microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512"
+  ],
   "logs": []
 }

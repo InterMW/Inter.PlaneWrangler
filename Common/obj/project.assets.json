@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/home/jbmelberg/.nuget/packages/": {}
+    "/home/codespace/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/Common.csproj",
+      "projectUniqueName": "/workspaces/Inter.PlaneWrangler/Common/Common.csproj",
       "projectName": "Common",
-      "projectPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/Common.csproj",
-      "packagesPath": "/home/jbmelberg/.nuget/packages/",
-      "outputPath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Common/obj/",
+      "projectPath": "/workspaces/Inter.PlaneWrangler/Common/Common.csproj",
+      "packagesPath": "/home/codespace/.nuget/packages/",
+      "outputPath": "/workspaces/Inter.PlaneWrangler/Common/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/jbmelberg/.nuget/NuGet/NuGet.Config"
+        "/home/codespace/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -54,12 +54,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.20, 6.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.20, 6.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.418/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/dotnet/7.0.306/sdk/7.0.306/RuntimeIdentifierGraph.json"
       }
     }
   }

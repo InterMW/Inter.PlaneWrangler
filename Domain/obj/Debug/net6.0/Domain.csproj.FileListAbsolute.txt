@@ -10,3 +10,15 @@
 /home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/refint/Domain.dll
 /home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/Domain.pdb
 /home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/ref/Domain.dll
+/workspaces/Inter.PlaneWrangler/Domain/bin/Debug/net6.0/Domain.deps.json
+/workspaces/Inter.PlaneWrangler/Domain/bin/Debug/net6.0/Domain.dll
+/workspaces/Inter.PlaneWrangler/Domain/bin/Debug/net6.0/Domain.pdb
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/Domain.csproj.AssemblyReference.cache
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/Domain.AssemblyInfoInputs.cache
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/Domain.dll
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/refint/Domain.dll
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/Domain.pdb
+/workspaces/Inter.PlaneWrangler/Domain/obj/Debug/net6.0/ref/Domain.dll
