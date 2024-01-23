@@ -6,7 +6,7 @@
   </ItemGroup>
 
   <ItemGroup>
-  		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.65" />
+  		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.67" />
   </ItemGroup>
 
   <PropertyGroup>
