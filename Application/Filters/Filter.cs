@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using MelbergFramework.Infrastructure.Rabbit.Metrics;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Application.Filters;
@@ -8,6 +9,7 @@ namespace Application.Filters;
         void Start();
         void Stop();
         void Reset();
+        void Report(long ms);
     }
     [AttributeUsage(validOn: AttributeTargets.Class | AttributeTargets.Method)]
     public class ResponseTimeFilter : Attribute, IActionFilter
@@ -29,6 +31,7 @@ namespace Application.Filters;
             watch.Stop();
             string value = string.Format("{0}ms", watch.ElapsedMilliseconds);       
             context.HttpContext.Response.Headers["X-Action-Response-Time"] = value;
+            watch.Report(watch.ElapsedMilliseconds);
         }
     }
 
@@ -38,7 +41,14 @@ namespace Application.Filters;
 
     public class ActionResponseTimeStopwatch : Stopwatch, IActionResponseTimeStopwatch
     {
-        public ActionResponseTimeStopwatch() : base()
+        private readonly IMetricPublisher _publisher;
+        public ActionResponseTimeStopwatch(IMetricPublisher publisher) : base()
         {
+            _publisher = publisher;
         }
+
+    public void Report(long ms)
+    {
+        _publisher.SendMetric("api_response",ms,DateTime.UtcNow);
     }
+}
