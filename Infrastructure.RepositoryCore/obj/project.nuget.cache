@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lBWWTy0l+7xZER/BISku3qLnrgugn/7lAIzg2ZziaxgFsgJlJ7gdZwUWssgy+RQJZcLSdiXKCqzDr/1TxlA+fw==",
+  "dgSpecHash": "CgdeC5ef4ABY4VUGrFF+ZieYp29WkpOqN+BZj4mFayQ/ydn3Pszk1ah7ZCy0yf8QH9CutVHOoVFoccs8qEy9eA==",
   "success": true,
-  "projectFilePath": "/workspaces/Inter.PlaneWrangler/Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj",
-  "expectedPackageFiles": [
-    "/home/codespace/.nuget/packages/microsoft.netcore.app.ref/6.0.20/microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
-    "/home/codespace/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.20/microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512"
-  ],
+  "projectFilePath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/Infrastructure.RepositoryCore/Infrastructure.RepositoryCore.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
