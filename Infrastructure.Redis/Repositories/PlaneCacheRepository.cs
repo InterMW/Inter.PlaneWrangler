@@ -18,12 +18,18 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
         _frameLifespan = new TimeSpan(0,0,options.Value.PlaneDocLifetimesSecs);
     }
 
-    public Task InsertNodePlaneFrameAsync(PlaneFrame frame) =>
-        DB.StringSetAsync(
+    public async Task InsertNodePlaneFrameAsync(PlaneFrame frame)
+    {
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+        await DB.StringSetAsync(
             ToPreAggregateKey(frame),
             frame.ToModel().ToPayload(),
             _frameLifespan);
-
+        stopwatch.Stop();
+        Console.Writeline($"It took {stopwatch.ElapsedMilliseconds} to ingress");
+    }
+    
     public Task InsertCompiledPlaneFrameAsync(PlaneFrame frame) =>
         DB.StringSetAsync(
             ToCongregatedKey(frame),
