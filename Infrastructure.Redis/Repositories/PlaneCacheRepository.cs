@@ -27,7 +27,7 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
             frame.ToModel().ToPayload(),
             _frameLifespan);
         stopwatch.Stop();
-        Console.Writeline($"It took {stopwatch.ElapsedMilliseconds} to ingress");
+        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to ingress");
     }
     
     public Task InsertCompiledPlaneFrameAsync(PlaneFrame frame) =>
