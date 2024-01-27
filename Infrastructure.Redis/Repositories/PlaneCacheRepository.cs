@@ -5,6 +5,7 @@ using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Mappers;
 using Infrastructure.RepositoryCore;
 using MelbergFramework.Infrastructure.Redis.Repository;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Redis.Repositories;
@@ -12,38 +13,28 @@ namespace Infrastructure.Redis.Repositories;
 public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCacheRepository
 {
     private readonly TimeSpan _frameLifespan;
+    private readonly ILogger<PlaneCacheRepository> _logger;
 
-    public PlaneCacheRepository(PlaneCacheContext context, IOptions<TimingsOptions> options) : base(context) 
+    public PlaneCacheRepository(PlaneCacheContext context, IOptions<TimingsOptions> options, ILogger<PlaneCacheRepository> logger) : base(context) 
     {
         _frameLifespan = new TimeSpan(0,0,options.Value.PlaneDocLifetimesSecs);
+        _logger = logger;
     }
 
     public async Task InsertNodePlaneFrameAsync(PlaneFrame frame)
     {
         var stopwatch = new Stopwatch();
-        stopwatch.Start();
         var model = frame.ToModel();
-        stopwatch.Stop();
-        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to model");
-        stopwatch.Restart();
         var payload = model.ToPayload();
-        stopwatch.Stop();
-        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to payload");
-        stopwatch.Restart();
         var key = ToPreAggregateKey(frame);
-        stopwatch.Stop();
-        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to key");
-        stopwatch.Restart();
         var life = _frameLifespan;
-        stopwatch.Stop();
-        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to life");
         stopwatch.Restart();
-        await DB.StringSetAsync(
+        DB.StringSetAsync(
             key,
             payload,
-            life);
+            life).Wait();
         stopwatch.Stop();
-        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to ingress");
+        _logger.LogInformation($"{stopwatch.ElapsedMilliseconds}, {payload.Length},");
     }
     
     public Task InsertCompiledPlaneFrameAsync(PlaneFrame frame) =>
@@ -63,7 +54,9 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
                 Node = keySections[2],
                 Antenna = keySections[3]
             };
-            yield return (await DB.StringGetAsync(key)).ToDomain(sourceDefinition);
+            var result = DB.StringGetAsync(key);
+            result.Wait();
+            yield return result.Result.ToDomain(sourceDefinition);
         }
         yield break;
     }

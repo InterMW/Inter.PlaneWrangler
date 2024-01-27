@@ -1,16 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "eX5hT2/5ymS9urALXVnWJyuQ/EAwNT/4jnOs3O8AXYt4e6p7UrlxK995OcPztfdIgeFIZcj3Z3m/39s3K/MkOg==",
+  "dgSpecHash": "xhPyOyaYN+itJRJNxpk3+4M36a7M5+GWdosTbzEi6fhAZVB4aMFQt6fln+B6ny6wO/LUDFnsMe4PZpmsCSwstQ==",
   "success": true,
-  "projectFilePath": "/workspaces/Inter.PlaneWrangler/DomainService/DomainService.csproj",
+  "projectFilePath": "/home/jbmelberg/Documents/Git/Inter.PlaneWrangler/DomainService/DomainService.csproj",
   "expectedPackageFiles": [
-    "/home/codespace/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
-    "/home/codespace/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
-    "/home/codespace/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
-    "/home/codespace/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
-    "/home/codespace/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "/home/codespace/.nuget/packages/microsoft.netcore.app.ref/6.0.20/microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
-    "/home/codespace/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.20/microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512"
+    "/home/jbmelberg/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/home/jbmelberg/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
