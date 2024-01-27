@@ -22,10 +22,26 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
     {
         var stopwatch = new Stopwatch();
         stopwatch.Start();
+        var model = frame.ToModel();
+        stopwatch.Stop();
+        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to model");
+        stopwatch.Restart();
+        var payload = model.ToPayload();
+        stopwatch.Stop();
+        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to payload");
+        stopwatch.Restart();
+        var key = ToPreAggregateKey(frame);
+        stopwatch.Stop();
+        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to key");
+        stopwatch.Restart();
+        var life = _frameLifespan;
+        stopwatch.Stop();
+        Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to life");
+        stopwatch.Restart();
         await DB.StringSetAsync(
-            ToPreAggregateKey(frame),
-            frame.ToModel().ToPayload(),
-            _frameLifespan);
+            key,
+            payload,
+            life);
         stopwatch.Stop();
         Console.WriteLine($"It took {stopwatch.ElapsedMilliseconds} to ingress");
     }
