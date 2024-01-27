@@ -29,12 +29,16 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
         var key = ToPreAggregateKey(frame);
         var life = _frameLifespan;
         stopwatch.Restart();
-        DB.StringSetAsync(
+        await DB.StringSetAsync(
             key,
             payload,
-            life).Wait();
+            life);
         stopwatch.Stop();
-        _logger.LogInformation($"{stopwatch.ElapsedMilliseconds}, {payload.Length},");
+        if(stopwatch.ElapsedMilliseconds > 50)
+        {
+            
+            _logger.LogInformation($"INSERT {frame.Source}:{stopwatch.ElapsedMilliseconds}, {payload.Length},");
+        }
     }
     
     public Task InsertCompiledPlaneFrameAsync(PlaneFrame frame) =>
