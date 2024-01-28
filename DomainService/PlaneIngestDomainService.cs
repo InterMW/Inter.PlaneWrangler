@@ -22,12 +22,8 @@ public class PlaneIngestDomainService : IPlaneIngestDomainService
 
     public async Task IngestPlaneFrameAsync(PlaneFrame frame)
     {
-        await Task.WhenAll(
-            _planeCacheRepository.InsertNodePlaneFrameAsync(frame),
-            RecordMetadataAsync(frame)
-            );
-        
-
+        await _planeCacheRepository.InsertNodePlaneFrameAsync(frame);
+        await RecordMetadataAsync(frame);
     }
 
     private Task RecordMetadataAsync(PlaneFrame frame) =>

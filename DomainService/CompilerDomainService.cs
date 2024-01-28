@@ -45,27 +45,20 @@ public class CompilerDomainService : ICompilerDomainService
         var stopwatch = new Stopwatch();
         stopwatch.Start();
         var totalState = await GetPlaneStatesAndCombine(offsetTimestamp);
+        stopwatch.Stop();
         _logger.LogWarning($"It took totalstate {stopwatch.ElapsedMilliseconds}");
-        stopwatch.Restart();
+
 
         var congregatedFrame = FilterPlanesIntoFrame(offsetTimestamp, totalState);
         
-        _logger.LogWarning($"It took filter {stopwatch.ElapsedMilliseconds}");
-        stopwatch.Restart();
         await _planeCacheRepository.InsertCompiledPlaneFrameAsync(congregatedFrame);
-        _logger.LogWarning($"It took insert {stopwatch.ElapsedMilliseconds}");
-        stopwatch.Restart();
 
         var metadata = CreateMetadataFromFrame(congregatedFrame);
 
        await _planeMetadataRepository.LogPlaneMetadata(metadata);
-        _logger.LogWarning($"It took log {stopwatch.ElapsedMilliseconds}");
-        stopwatch.Restart();
 
         _planeFramePublisher.PublishPlaneFrame(congregatedFrame);
         
-        _logger.LogWarning($"It took publish{stopwatch.ElapsedMilliseconds}");
-        stopwatch.Restart();
         Console.WriteLine($" {metadata.Total}");
     }
 
