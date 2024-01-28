@@ -25,7 +25,10 @@ public class Program
     public static void Main(string[] args) 
     {
         ThreadPool.GetMinThreads(out var workerThreads, out var completionPortThreads);
+        ThreadPool.GetMaxThreads(out var workerThreads1, out var completionPortThreads1);
         Console.WriteLine($"abcdefghi {workerThreads} {completionPortThreads}");
+        Console.WriteLine($"abcdefghi {workerThreads1} {completionPortThreads1}");
+        ThreadPool.SetMinThreads(8, 8);
         var builder = WebApplication.CreateBuilder();
         
         builder.Services.AddControllers().AddNewtonsoftJson();
