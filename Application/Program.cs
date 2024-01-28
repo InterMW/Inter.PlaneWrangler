@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Reactive.Concurrency;
 using Application.Filters;
 using Application.Models;
 using Application.Pillars;
@@ -23,7 +24,8 @@ public class Program
 {
     public static void Main(string[] args) 
     {
-
+        ThreadPool.GetMinThreads(out var workerThreads, out var completionPortThreads);
+        Console.WriteLine($"abcdefghi {workerThreads} {completionPortThreads}");
         var builder = WebApplication.CreateBuilder();
         
         builder.Services.AddControllers().AddNewtonsoftJson();
