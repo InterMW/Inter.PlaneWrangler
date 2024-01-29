@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using System.Reactive.Concurrency;
 using Application.Filters;
 using Application.Models;
 using Application.Pillars;
@@ -13,7 +11,6 @@ using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Repositories;
 using Infrastructure.RepositoryCore;
 using MelbergFramework.Application;
-using MelbergFramework.Core.Health;
 using MelbergFramework.Infrastructure.InfluxDB;
 using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.Redis;
@@ -24,11 +21,7 @@ public class Program
 {
     public static void Main(string[] args) 
     {
-        ThreadPool.GetMinThreads(out var workerThreads, out var completionPortThreads);
-        ThreadPool.GetMaxThreads(out var workerThreads1, out var completionPortThreads1);
-        Console.WriteLine($"abcdefghi {workerThreads} {completionPortThreads}");
-        Console.WriteLine($"abcdefghi {workerThreads1} {completionPortThreads1}");
-        ThreadPool.SetMinThreads(8, 8);
+        ThreadPool.SetMinThreads(8, 8); //required
         var builder = WebApplication.CreateBuilder();
         
         builder.Services.AddControllers().AddNewtonsoftJson();
@@ -45,44 +38,27 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseRouting();
+
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
         });
-            app.UseCors(_ => _
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .SetIsOriginAllowed(origin => true)
-                .AllowCredentials()
-                );
+
+        app.UseCors(_ => _
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .SetIsOriginAllowed(origin => true)
+            .AllowCredentials()
+            );
         app.UseSwagger();
         app.UseSwaggerUI();
-        //Make ready
-
-        var stopwatch = new Stopwatch();
-        stopwatch.Restart();
-        var isOkTask = app.Services.GetService<IHealthCheckChecker>().IsOk();
-
-        isOkTask.Wait();
-        
-        stopwatch.Stop();
-        var isOk = isOkTask.Result;
-
-        if(!isOk)
-        {
-            throw new Exception();  
-        }
-
-        Console.WriteLine($"Became ready in {stopwatch.ElapsedMilliseconds}");
-        
-        stopwatch.Stop();
 
         app.Run();
     }
     
     private static void RegisterDependencies(IServiceCollection services, bool isDevelopment)
     {
-        RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,PlaneFrameMessage>(services,true);
+        RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,PlaneFrameMessage>(services,!isDevelopment);
         RabbitModule.RegisterMicroConsumer<
             TickCommandProcessor,
             MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, !isDevelopment);
@@ -111,5 +87,4 @@ public class Program
         services.AddSingleton<TimingsOptions,TimingsOptions>();
         services.AddSwaggerGen();
     }
-
 }

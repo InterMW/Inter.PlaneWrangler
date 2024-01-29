@@ -1,11 +1,9 @@
-using System.Diagnostics;
 using Common;
 using Domain;
 using Infrastructure.Redis.Contexts;
 using Infrastructure.Redis.Mappers;
 using Infrastructure.RepositoryCore;
 using MelbergFramework.Infrastructure.Redis.Repository;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Redis.Repositories;
@@ -13,33 +11,19 @@ namespace Infrastructure.Redis.Repositories;
 public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCacheRepository
 {
     private readonly TimeSpan _frameLifespan;
-    private readonly ILogger<PlaneCacheRepository> _logger;
 
-    public PlaneCacheRepository(PlaneCacheContext context, IOptions<TimingsOptions> options, ILogger<PlaneCacheRepository> logger) : base(context) 
+    public PlaneCacheRepository(
+        PlaneCacheContext context,
+        IOptions<TimingsOptions> options) : base(context) 
     {
         _frameLifespan = new TimeSpan(0,0,options.Value.PlaneDocLifetimesSecs);
-        _logger = logger;
     }
 
-    public async Task InsertNodePlaneFrameAsync(PlaneFrame frame)
-    {
-        var stopwatch = new Stopwatch();
-        var model = frame.ToModel();
-        var payload = model.ToPayload();
-        var key = ToPreAggregateKey(frame);
-        var life = _frameLifespan;
-        stopwatch.Restart();
-        await DB.StringSetAsync(
-            key,
-            payload,
-            life);
-        stopwatch.Stop();
-        if(stopwatch.ElapsedMilliseconds > 50)
-        {
-            
-            _logger.LogInformation($"INSERT {frame.Source}:{stopwatch.ElapsedMilliseconds}, {payload.Length},");
-        }
-    }
+    public Task InsertNodePlaneFrameAsync(PlaneFrame frame) =>
+        DB.StringSetAsync(
+            ToPreAggregateKey(frame),
+            frame.ToModel().ToPayload(),
+            _frameLifespan);
     
     public Task InsertCompiledPlaneFrameAsync(PlaneFrame frame) =>
         DB.StringSetAsync(
@@ -58,9 +42,8 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
                 Node = keySections[2],
                 Antenna = keySections[3]
             };
-            var result = DB.StringGetAsync(key);
-            result.Wait();
-            yield return result.Result.ToDomain(sourceDefinition);
+            var result = await DB.StringGetAsync(key);
+            yield return result.ToDomain(sourceDefinition);
         }
         yield break;
     }
