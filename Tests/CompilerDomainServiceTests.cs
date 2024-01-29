@@ -151,6 +151,33 @@ public class CompilerDomainServiceTests
                 It.Is<PlaneFrame>(_ => ComparePlaneFrame(planeframeExpected,_))),
                 Times.Once);
         
+        PlaneFrameMetadata expected = new()
+        {
+            Timestamp = DateTime.UnixEpoch.AddSeconds(1-_optionsMock.Object.Value.CompilationOffsetSecs),
+            Antenna = "congregator",
+            Hostname = "congregation",
+            Detailed = 1,
+            Total = 1
+        };
+        
+        _planeMetadataRepositoryMock
+            .Verify(_ => _.LogPlaneMetadata(It.Is<PlaneFrameMetadata>(_ => ComparePlaneMetadata(expected,_))),
+                Times.Once);
+        _planeFramePublisherMock
+            .Verify(_ => _.PublishPlaneFrame(It.Is<PlaneFrame>(_ => ComparePlaneFrame(planeframeExpected, _))),
+                Times.Once);
+        
+    }
+    
+    private bool ComparePlaneMetadata(PlaneFrameMetadata expected, PlaneFrameMetadata actual)
+    {
+        Assert.AreEqual(expected.Total,actual.Total, "Total");
+        Assert.AreEqual(expected.Detailed, actual.Detailed, "Detailed");
+        Assert.AreEqual(expected.Antenna, actual.Antenna);
+        Assert.AreEqual(expected.Hostname, actual.Hostname);
+        Assert.AreEqual(expected.Timestamp, actual.Timestamp);
+        
+        return true;
     }
     private bool ComparePlaneFrame(PlaneFrame expected, PlaneFrame actual)
     {
