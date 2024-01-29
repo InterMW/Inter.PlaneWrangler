@@ -40,14 +40,7 @@ public class CompilerDomainService : ICompilerDomainService
     {
         var offsetTimestamp = timestamp - _timestampOffset; // look at some previous moment
 
-        Console.Write($"Congregating {offsetTimestamp}");
-        
-        var stopwatch = new Stopwatch();
-        stopwatch.Start();
         var totalState = await GetPlaneStatesAndCombine(offsetTimestamp);
-        stopwatch.Stop();
-        _logger.LogWarning($"It took totalstate {stopwatch.ElapsedMilliseconds}");
-
 
         var congregatedFrame = FilterPlanesIntoFrame(offsetTimestamp, totalState);
         
@@ -55,11 +48,12 @@ public class CompilerDomainService : ICompilerDomainService
 
         var metadata = CreateMetadataFromFrame(congregatedFrame);
 
-       await _planeMetadataRepository.LogPlaneMetadata(metadata);
+        await _planeMetadataRepository.LogPlaneMetadata(metadata);
 
         _planeFramePublisher.PublishPlaneFrame(congregatedFrame);
         
-        Console.WriteLine($" {metadata.Total}");
+        _logger.LogInformation("Resulting frame had {planeCount} planes in it", metadata.Total);
+        
     }
 
     private async Task<IDictionary<string, TimeAnotatedPlane>> GetPlaneStatesAndCombine(long timeStamp) 
@@ -139,8 +133,7 @@ public class CompilerDomainService : ICompilerDomainService
     }
 
     private static ulong BestUpdated(ulong? currentUpdated, ulong? selectedUpdated) => 
-        (currentUpdated ?? 0) > (selectedUpdated ?? 0) ? 
-        currentUpdated ?? 0 : selectedUpdated ?? 0;
+        Math.Max(currentUpdated ?? 0,selectedUpdated ?? 0);
 
     private static T CompareUpdated<T>(
         T currentValue,
