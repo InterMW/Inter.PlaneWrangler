@@ -19,11 +19,9 @@ public class TickCommandProcessor : IStandardConsumer
 
     public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
-        var sto = new Stopwatch();
-        sto.Start();
-        await _domainService.CompilePlanesAsync(ExtractTimestamp(message.GetTimestamp()));
-        sto.Stop();
-        _logger.LogWarning($"Handled tick in {sto.ElapsedMilliseconds}");
+        var time = ExtractTimestamp(message.GetTimestamp());
+        await _domainService.CompilePlanesAsync(time);
+        _logger.LogWarning("Handled tick for moment {past} ",time);
     } 
     
     private long ExtractTimestamp(DateTime time) => 
