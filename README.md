@@ -1,22 +1,33 @@
 # Inter.PlaneWrangler
 
+## Summary
 This microservice is in charge of taking in plane frame messages and, upon 
 command (the tick message), it combines the given moment's set of plane info
-and supplys that via web api.
+and supplys that via web api and rabbit message.
 
-# Pillars
+## How to run
+
+### Required Infrastructure
+|Product|Details|
+|-|-|
+|InfluxDB| You will need a bucket called plane_data, change the InfluxDBContext value of the ConnectionStrings section of [appsettings.json](Application/appsettings.json).|
+|Redis| Update the PlaneCacheContext value  of the ConnectionStrings section of [appsettings.json](Application/appsettings.json).|
+|RabbitMQ| The code will create the exchanges, queues, and bindings for you, just update the Rabbit:ClientDeclarations:Connections:0 details in [appsettings.json](Application/appsettings.json). Note that this will not give you access to the incoming data stream, please reach out to me if interested.  To trigger the Plane Compiler, send a message to the Clock exchange following the binding as described by the appsettings.json file.|
+
+# Overview
+A brief look into how this application works.
 
 ## Plane Ingest
 
-This pillar handles data intake for the service, in the form of a [PlaneFrameMessage](Application/Models/PlaneFrameMessage.cs).
+This process handles data intake for the service, in the form of a [PlaneFrameMessage](Application/Models/PlaneFrameMessage.cs).
 
 The data is stored on a per-node, per-antenna, per-timestamp basis in redis.
 
 
 ## Plane Compiler
 
-This pillar handles the compilation of plane data, prompted by the [TickMessage](Application/Models/TickMessage.cs).  The final result of this compilation is stored on a per-timestamp basis in redis.
+This process handles the compilation of plane data, prompted by the [TickMessage](Application/Models/TickMessage.cs).  The final result of this compilation is stored on a per-timestamp basis in redis and published as a rabbit message.
 
 ## Access
 
-This pillar is a web api, there to expose the compiled plane information to interested parties.
+This process is a web api to expose the compiled plane information to interested parties.
