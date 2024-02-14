@@ -6,6 +6,7 @@ public interface IPlaneCacheRepository
 {
     Task InsertNodePlaneFrameAsync(PlaneFrame frame);
     Task InsertCompiledPlaneFrameAsync(PlaneFrame frame);
-    IAsyncEnumerable<PlaneFrame> CollectPlaneStatesAsync(long timestamp);
     Task<PlaneFrame> GetCompiledPlaneFrameAsync(long timestamp);
+    Task<IEnumerable<TimeAnotatedPlane>> CollectPlaneStatesAsync(long timestamp);
+
 }

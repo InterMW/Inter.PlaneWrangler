@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using System.Diagnostics;
 using Common;
 using Domain;
 using Infrastructure.RepositoryCore;
@@ -27,7 +26,6 @@ public class CompilerDomainService : ICompilerDomainService
         IPlaneFramePublisher planeFramePublisher,
         IOptions<TimingsOptions> timingsOptions,
         ILogger<CompilerDomainService> logger)
-
     {
         _planeCacheRepository = planeCacheRepository;
         _planeMetadataRepository = planeMetadataRepository;
@@ -60,9 +58,9 @@ public class CompilerDomainService : ICompilerDomainService
     {
         var totalState = new Dictionary<string, TimeAnotatedPlane>();
 
-        await foreach(var planeFrame in _planeCacheRepository.CollectPlaneStatesAsync(timeStamp))
+        foreach(var plane in await _planeCacheRepository.CollectPlaneStatesAsync(timeStamp))
         {
-            foreach(var plane in planeFrame.Planes)
+            if(plane is not null)
             {
                 SafeAdd(totalState, plane);
             }
