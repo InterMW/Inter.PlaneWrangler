@@ -141,7 +141,7 @@ public class CompilerDomainServiceTests
         };
         _planeCacheRepositoryMock
             .Setup(_ => _.CollectPlaneStatesAsync(It.IsAny<long>()))
-            .Returns(GetPlanes(new[] {planeFrame1, planeFrame2}));
+            .Returns(GetPlanes(planeFrame1.Planes.Concat(planeFrame2.Planes)));
         
 
         await _domainService.CompilePlanesAsync(1);
@@ -216,12 +216,9 @@ public class CompilerDomainServiceTests
         
         return true;
     }
-    private async IAsyncEnumerable<PlaneFrame> GetPlanes(IEnumerable<PlaneFrame> frames)
+    private async Task<IEnumerable<TimeAnotatedPlane>> GetPlanes(IEnumerable<TimeAnotatedPlane> frames)
     {
-        foreach(var planeFrame in frames)
-        {
-            await Task.Delay(1);
-            yield return planeFrame;
-        }
+        await Task.Delay(1);
+        return frames;
     }
 }
