@@ -13,12 +13,12 @@ A brief description of each of the processes.
 
 This process handles data intake for the service, in the form of a [PlaneFrameMessage](Application/Models/PlaneFrameMessage.cs).
 
-The data is stored on a per-node, per-antenna, per-timestamp basis in redis.
-
 
 ## Plane Compiler
 
-This process handles the compilation of plane data, prompted by the [TickMessage](Application/Models/TickMessage.cs).  The final result of this compilation is stored on a per-timestamp basis in redis and published as a rabbit message.
+This process handles the compilation of plane data, prompted by the [TickMessage](Application/Models/TickMessage.cs).  The final result of this compilation is stored and published as a rabbit message.
+
+This task is timed and its duration is reported via Metrics.
 
 ## Access
 
