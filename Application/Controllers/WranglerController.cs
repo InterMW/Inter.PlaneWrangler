@@ -4,6 +4,7 @@ using Application.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Application.Responses;
+using MelbergFramework.Core.Time;
 
 namespace Application;
 
@@ -14,15 +15,19 @@ public class WranglerController
     private readonly long _offset;
     private readonly long _range;
     private readonly IAccessDomainService _service;
+    private readonly IClock _clock;
+
     public WranglerController(
         IAccessDomainService service,
-        IOptions<TimingsOptions> timingsOptions
+        IOptions<TimingsOptions> timingsOptions,
+        IClock clock
         )
     {
         _service = service;
         _offset = timingsOptions.Value.CompilationOffsetSecs +
             timingsOptions.Value.CompilationDurationPredictionSecs;
         _range = timingsOptions.Value.PlaneDocLifetimesSecs;
+        _clock = clock;
     }
 
     [HttpGet]
@@ -46,7 +51,9 @@ public class WranglerController
     }
     
     private long MaxTime =>
-        (long) (DateTime.UtcNow
-            .Subtract(DateTime.UnixEpoch).TotalSeconds - _offset);
+        (long) (
+                _clock
+                .GetUtcNow()
+                .Subtract(DateTime.UnixEpoch).TotalSeconds - _offset);
 
 }

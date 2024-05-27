@@ -6,11 +6,11 @@
   </ItemGroup>
 
   <ItemGroup>
-  		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.67" />
+  		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="8.0.13" />
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>

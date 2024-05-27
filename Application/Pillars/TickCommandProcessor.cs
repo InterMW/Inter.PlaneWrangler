@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using DomainService;
 using MelbergFramework.Infrastructure.Rabbit.Consumers;
 using MelbergFramework.Infrastructure.Rabbit.Extensions;
@@ -11,7 +10,8 @@ public class TickCommandProcessor : IStandardConsumer
     private readonly ICompilerDomainService _domainService;
     private readonly ILogger<TickCommandProcessor> _logger;
 
-    public TickCommandProcessor(ICompilerDomainService domainService, ILogger<TickCommandProcessor> logger)
+    public TickCommandProcessor(ICompilerDomainService domainService,
+            ILogger<TickCommandProcessor> logger)
     {
         _domainService = domainService;
         _logger = logger;
@@ -25,8 +25,5 @@ public class TickCommandProcessor : IStandardConsumer
     } 
     
     private long ExtractTimestamp(DateTime time) => 
-        (long) Math.Floor(
-            time.Subtract(DateTime.UnixEpoch).TotalSeconds
-            );
-
+        (long) Math.Floor( time.Subtract(DateTime.UnixEpoch).TotalSeconds);
 }

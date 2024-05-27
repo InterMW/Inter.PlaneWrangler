@@ -102,7 +102,7 @@ public class CompilerDomainService : ICompilerDomainService
         }
         else
         {
-            var currentRecord = planeDictionary.GetValueOrDefault(plane.HexValue);
+            var currentRecord = planeDictionary.GetValueOrDefault(plane.HexValue)!;
             var updatePosition = CompareUpdated(true, false, currentRecord.PositionUpdated, plane.PositionUpdated);
 
             currentRecord.Altitude = CompareUpdated(currentRecord.Altitude, plane.Altitude, currentRecord.AltitudeUpdated, plane.AltitudeUpdated);
@@ -116,7 +116,7 @@ public class CompilerDomainService : ICompilerDomainService
             currentRecord.Messages = "0";
             currentRecord.Nucp = updatePosition ? currentRecord.Nucp : plane.Nucp;
             currentRecord.PositionUpdated = BestUpdated(currentRecord.PositionUpdated, plane.PositionUpdated);
-            currentRecord.Rssi = 0; //not important
+            currentRecord.Rssi = Math.Max(currentRecord.Rssi ?? 0, plane.Rssi ?? 0);
             currentRecord.Speed = CompareUpdated(currentRecord.Speed, plane.Speed,currentRecord.SpeedUpdated, plane.SpeedUpdated);
             currentRecord.SpeedUpdated = BestUpdated(currentRecord.SpeedUpdated,plane.SpeedUpdated);
             currentRecord.Squawk = CompareUpdated(currentRecord.Squawk, plane.Squawk, currentRecord.SquawkUpdated, plane.SquawkUpdated);
@@ -137,6 +137,7 @@ public class CompilerDomainService : ICompilerDomainService
         T currentValue,
         T selectedValue,
         ulong? currentUpdated,
-        ulong? selectedUpdated) =>
-        (currentUpdated ?? 0) > (selectedUpdated ?? 0) ? currentValue : selectedValue;
+        ulong? selectedUpdated) => 
+        (currentUpdated ?? 0) > (selectedUpdated ?? 0) ?
+            currentValue : selectedValue;
 }
