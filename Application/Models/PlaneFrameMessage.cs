@@ -1,17 +1,17 @@
-using System.Text.Json.Serialization;
 using MelbergFramework.Infrastructure.Rabbit.Messages;
+using Newtonsoft.Json;
 
 namespace Application.Models;
 
 public class PlaneFrameMessage : StandardMessage
 {
-    [JsonPropertyName("now")]
+    [JsonProperty("now")]
     public double Now {get; set;}
-    [JsonPropertyName("aircraft")]
-    public AirplaneData[] Planes {get; set;} = Array.Empty<AirplaneData>();
-    [JsonPropertyName("source")]
+    [JsonProperty("aircraft")]
+    public AirplaneData[] Planes {get; set;}
+    [JsonProperty("source")]
     public string Source {get; set;} = string.Empty;
-    [JsonPropertyName("antenna")]
+    [JsonProperty("antenna")]
     public string Antenna {get; set;} = string.Empty;
     public override string GetRoutingKey() => "plane.final";
 }
