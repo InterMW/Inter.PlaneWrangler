@@ -20,7 +20,7 @@ public class Program
                     {
                         _.UseSwagger();
                         _.UseSwaggerUI();
-                        _.UseCors();
+                        //_.UseCors();
                         _.MapControllers();
                     })
             .Build()
