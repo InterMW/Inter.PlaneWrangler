@@ -3,7 +3,7 @@ COPY app App/
 WORKDIR /App
 EXPOSE 80
 EXPOSE 8080
-ENTRYPOINT ["dotnet", "Application.dll"]
+ENTRYPOINT ["dotnet", "Application.dll", "--urls http://0.0.0.0:8080"]
 
 RUN apt-get update \ 
   && apt-get install -y wget
