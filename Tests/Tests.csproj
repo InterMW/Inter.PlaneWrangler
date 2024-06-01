@@ -7,14 +7,14 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="LightBDD.MsTest3" Version="3.7.0" />
-    <PackageReference Include="MelbergFramework.Application" Version="8.0.7" />
-    <PackageReference Include="MelbergFramework.ComponentTesting.Redis" Version="8.0.8" />
-    <PackageReference Include="MelbergFramework.Core" Version="8.0.7" />
-    <PackageReference Include="MelbergFramework.Core.ComponentTesting" Version="8.0.7" />
-    <PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="8.0.13" />
-    <PackageReference Include="MelbergFramework.ComponentTesting.Rabbit" Version="8.0.13" />
-    <PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="8.0.1" />
-    <PackageReference Include="MelbergFramework.ComponentTesting.InfluxDB" Version="8.0.1" />
+    <PackageReference Include="MelbergFramework.Application" Version="8.0.8" />
+    <PackageReference Include="MelbergFramework.ComponentTesting.Redis" Version="8.0.9" />
+    <PackageReference Include="MelbergFramework.Core" Version="8.0.8" />
+    <PackageReference Include="MelbergFramework.Core.ComponentTesting" Version="8.0.8" />
+    <PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="8.0.14" />
+    <PackageReference Include="MelbergFramework.ComponentTesting.Rabbit" Version="8.0.14" />
+    <PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="8.0.2" />
+    <PackageReference Include="MelbergFramework.ComponentTesting.InfluxDB" Version="8.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="xunit" Version="2.7.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
