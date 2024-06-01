@@ -8,12 +8,13 @@ public class Program
     {
         ThreadPool.SetMinThreads(8, 8); //required
 
-        await  MelbergHost
+        var test = MelbergHost
             .CreateHost<AppRegistrator>()
             .DevelopmentPasswordReplacement("Rabbit:ClientDeclarations:Connections:0:Password", "rabbit_pass")
             .AddControllers()
-            .Build()
-            .RunAsync();
+            .Build().UseCors(_ => _.AllowAnyOrigin());
+        var eout = test.Build();
+            await eout.RunAsync();
        
     }
 }
