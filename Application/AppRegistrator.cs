@@ -45,5 +45,13 @@ public class AppRegistrator : Registrator
 
         services.AddSingleton<IClock, Clock>();
 
+        services.AddCors(options => 
+                {
+                options.AddDefaultPolicy(policy => 
+                        {
+                        policy.WithOrigins("https://plane.centurionx.net","https://api.centurionx.net");
+                        });
+                });
+
     }
 }
