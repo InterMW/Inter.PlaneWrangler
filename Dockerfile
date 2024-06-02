@@ -1,8 +1,9 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 COPY app App/
 WORKDIR /App
-EXPOSE 80
+EXPOSE 8080
 EXPOSE 8180
+ENV ASPNETCORE_URLS=http://+:8080
 ENTRYPOINT ["dotnet", "Application.dll"]
 
 RUN apt-get update \ 
