@@ -8,25 +8,31 @@ public class Program
     {
         ThreadPool.SetMinThreads(8, 8); //required
 
-        await MelbergHost
-            .CreateHost<AppRegistrator>()
-            .DevelopmentPasswordReplacement("Rabbit:ClientDeclarations:Connections:0:Password", "rabbit_pass")
-            .AddServices(_ => 
-                    {
-                        _.AddControllers();
-                        _.AddSwaggerGen();
+        var app = WebApplication.CreateBuilder().Build();
 
-                    })
-            .ConfigureApp(_ =>
-                    {
-                        _.UseSwagger();
-                        _.UseSwaggerUI();
-                        _.UseRouting();
-                        //_.UseCors();
-                        _.MapControllers();
-                    })
-            .Build()
-            .RunAsync();
+        app.MapGet("/wrangler/health", () => "howdy");
+
+        app.Run();
+    Console.WriteLine("why am I here");
+        // await MelbergHost
+        //     .CreateHost<AppRegistrator>()
+        //     .DevelopmentPasswordReplacement("Rabbit:ClientDeclarations:Connections:0:Password", "rabbit_pass")
+        //     .AddServices(_ => 
+        //             {
+        //                 _.AddControllers();
+        //                 _.AddSwaggerGen();
+
+        //             })
+        //     .ConfigureApp(_ =>
+        //             {
+        //                 _.UseSwagger();
+        //                 _.UseSwaggerUI();
+        //                 _.UseRouting();
+        //                 //_.UseCors();
+        //                 _.MapControllers();
+        //             })
+        //     .Build()
+        //     .RunAsync();
 
     }
 }
