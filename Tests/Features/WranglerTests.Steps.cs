@@ -10,6 +10,7 @@ using MelbergFramework.Infrastructure.Rabbit.Extensions;
 using MelbergFramework.Infrastructure.Rabbit.Messages;
 using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -149,7 +150,8 @@ public partial class WranglerTests : BaseTestFrame
         var controller = new WranglerController(
                 GetClass<IAccessDomainService>(),
                 GetClass<IOptions<TimingsOptions>>(),
-                GetClass<IClock>());
+                GetClass<IClock>(),
+                GetClass<ILogger<WranglerController>>());
 
 
        _response = await controller.GetFrameAsync(4);

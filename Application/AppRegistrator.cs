@@ -21,11 +21,11 @@ public class AppRegistrator : Registrator
 {
     public override void RegisterServices(IServiceCollection services)
     {
-        RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,
-            PlaneFrameMessage>(services,true);
-        RabbitModule.RegisterMicroConsumer<
-            TickCommandProcessor,
-            MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, true);
+        // RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,
+        //     PlaneFrameMessage>(services,true);
+        // RabbitModule.RegisterMicroConsumer<
+        //     TickCommandProcessor,
+        //     MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, true);
 
         services.AddTransient<IPlaneIngestDomainService,PlaneIngestDomainService>();
         services.AddTransient<ICompilerDomainService, CompilerDomainService>();
@@ -44,8 +44,5 @@ public class AppRegistrator : Registrator
         services.AddSwaggerGen();
 
         services.AddSingleton<IClock, Clock>();
-
-        //services.AddCors(options => { options.AddDefaultPolicy(policy => { policy.WithOrigins("https://plane.centurionx.net","https://api.centurionx.net"); }); });
-
     }
 }

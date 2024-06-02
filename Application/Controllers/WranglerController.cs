@@ -16,11 +16,13 @@ public class WranglerController
     private readonly long _range;
     private readonly IAccessDomainService _service;
     private readonly IClock _clock;
+    private readonly ILogger<WranglerController> _logger;
 
     public WranglerController(
         IAccessDomainService service,
         IOptions<TimingsOptions> timingsOptions,
-        IClock clock
+        IClock clock,
+        ILogger<WranglerController> logger
         )
     {
         _service = service;
@@ -28,6 +30,8 @@ public class WranglerController
             timingsOptions.Value.CompilationDurationPredictionSecs;
         _range = timingsOptions.Value.PlaneDocLifetimesSecs;
         _clock = clock;
+
+        _logger = logger;
     }
 
     [HttpGet]
@@ -35,6 +39,7 @@ public class WranglerController
     [ProducesResponseType(typeof(PlaneFrameResponse),200)]
     public async Task<IActionResult> GetFrameAsync([FromQuery] long? time)
     {
+        _logger.LogInformation("hit");
         time ??= MaxTime;
         
         //If the time is too high or too low, we won't have the answer
