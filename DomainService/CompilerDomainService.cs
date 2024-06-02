@@ -50,7 +50,7 @@ public class CompilerDomainService : ICompilerDomainService
 
         _planeFramePublisher.PublishPlaneFrame(congregatedFrame);
         
-        _logger.LogInformation("Resulting frame had {planeCount} planes in it", metadata.Total);
+//        _logger.LogInformation("Resulting frame had {planeCount} planes in it", metadata.Total);
         
     }
 

@@ -15,11 +15,13 @@ public class Program
                     {
                         _.AddControllers();
                         _.AddSwaggerGen();
+
                     })
             .ConfigureApp(_ =>
                     {
                         _.UseSwagger();
                         _.UseSwaggerUI();
+                        _.UseRouting();
                         //_.UseCors();
                         _.MapControllers();
                     })

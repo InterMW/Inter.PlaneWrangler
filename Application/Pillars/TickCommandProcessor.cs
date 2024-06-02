@@ -21,7 +21,7 @@ public class TickCommandProcessor : IStandardConsumer
     {
         var time = ExtractTimestamp(message.GetTimestamp());
         await _domainService.CompilePlanesAsync(time);
-        _logger.LogWarning("Handled tick for moment {past} ",time);
+//        _logger.LogWarning("Handled tick for moment {past} ",time);
     } 
     
     private long ExtractTimestamp(DateTime time) => 

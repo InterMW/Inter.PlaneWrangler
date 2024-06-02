@@ -47,8 +47,12 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
     public async Task<PlaneFrame> GetCompiledPlaneFrameAsync(long timestamp)
     {
         var payload = await DB.StringGetAsync(ToCompiledKey(timestamp));
-        return JsonSerializer.Deserialize<PlaneFrame>(payload) 
-            ?? new PlaneFrame() {Now = timestamp};
+
+        if(!payload.HasValue)
+        {
+            return new PlaneFrame() {Now = timestamp};
+        }
+        return JsonSerializer.Deserialize<PlaneFrame>(payload);
     }
 
     private string ToPrecompiledKey(PlaneFrame frame) =>

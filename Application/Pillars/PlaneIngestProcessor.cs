@@ -28,6 +28,6 @@ public class PlaneIngestProcessor : IStandardConsumer
         var planeFrame = _translator.Translate(message)!;
         await _domainService.IngestPlaneFrameAsync(planeFrame.ToDomain());
 
-        _logger.LogInformation("Consumed plane frame from {node}", planeFrame.Source);
+//        _logger.LogInformation("Consumed plane frame from {node}", planeFrame.Source);
     }
 }
