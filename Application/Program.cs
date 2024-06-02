@@ -11,6 +11,7 @@ public class Program
         var app = WebApplication.CreateBuilder().Build();
 
         app.MapGet("/wrangler/health", () => "howdy");
+        app.MapGet("/health", () => "howdydoo");
 
         app.Run();
     Console.WriteLine("why am I here");
