@@ -7,33 +7,36 @@ public class Program
     public static async Task Main(string[] args)
     {
         ThreadPool.SetMinThreads(8, 8); //required
+        var cors = "CORS";
 
-        var app = WebApplication.CreateBuilder().Build();
-
-        app.MapGet("/wrangler/health", () => "howdy");
-        app.MapGet("/health", () => "howdydoo");
-
-        app.Run();
-    Console.WriteLine("why am I here");
-        // await MelbergHost
-        //     .CreateHost<AppRegistrator>()
-        //     .DevelopmentPasswordReplacement("Rabbit:ClientDeclarations:Connections:0:Password", "rabbit_pass")
-        //     .AddServices(_ => 
-        //             {
-        //                 _.AddControllers();
-        //                 _.AddSwaggerGen();
-
-        //             })
-        //     .ConfigureApp(_ =>
-        //             {
-        //                 _.UseSwagger();
-        //                 _.UseSwaggerUI();
-        //                 _.UseRouting();
-        //                 //_.UseCors();
-        //                 _.MapControllers();
-        //             })
-        //     .Build()
-        //     .RunAsync();
+        await MelbergHost
+            .CreateHost<AppRegistrator>()
+            .DevelopmentPasswordReplacement("Rabbit:ClientDeclarations:Connections:0:Password", "rabbit_pass")
+            .AddServices(_ => 
+                    {
+                        _.AddControllers();
+                        _.AddSwaggerGen();
+ 
+                        
+_.AddCors(options =>
+{
+    options.AddPolicy(name: cors,
+                      policy  =>
+                      {
+                          policy.WithOrigins("http://plane.centurionx.net");
+                      });
+});
+                    })
+            .ConfigureApp(_ =>
+                    {
+                        _.UseSwagger();
+                        _.UseSwaggerUI();
+                        _.UseRouting();
+                        _.UseCors(cors);
+                        _.MapControllers();
+                    })
+            .Build()
+            .RunAsync();
 
     }
 }
