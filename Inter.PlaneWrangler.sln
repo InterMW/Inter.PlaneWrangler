@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E13291A5-1BE7-4C78-9297-C99DE59B2C94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{BCAFAB36-0447-46E0-BDA1-33284FD92176}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Rabbit", "Infrastructure.Rabbit\Infrastructure.Rabbit.csproj", "{44C543B2-C721-4487-B83F-0DD4CB6CCD88}"
 EndProject
 Global
@@ -58,10 +56,6 @@ Global
 		{E13291A5-1BE7-4C78-9297-C99DE59B2C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E13291A5-1BE7-4C78-9297-C99DE59B2C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E13291A5-1BE7-4C78-9297-C99DE59B2C94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCAFAB36-0447-46E0-BDA1-33284FD92176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCAFAB36-0447-46E0-BDA1-33284FD92176}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCAFAB36-0447-46E0-BDA1-33284FD92176}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCAFAB36-0447-46E0-BDA1-33284FD92176}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44C543B2-C721-4487-B83F-0DD4CB6CCD88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44C543B2-C721-4487-B83F-0DD4CB6CCD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44C543B2-C721-4487-B83F-0DD4CB6CCD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
