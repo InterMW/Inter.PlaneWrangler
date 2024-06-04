@@ -21,11 +21,11 @@ public class AppRegistrator : Registrator
 {
     public override void RegisterServices(IServiceCollection services)
     {
-        // RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,
-        //     PlaneFrameMessage>(services,true);
-        // RabbitModule.RegisterMicroConsumer<
-        //     TickCommandProcessor,
-        //     MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, true);
+        RabbitModule.RegisterMicroConsumer<PlaneIngestProcessor,
+            PlaneFrameMessage>(services,true);
+        RabbitModule.RegisterMicroConsumer<
+            TickCommandProcessor,
+            MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, true);
 
         services.AddTransient<IPlaneIngestDomainService,PlaneIngestDomainService>();
         services.AddTransient<ICompilerDomainService, CompilerDomainService>();
