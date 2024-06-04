@@ -1,4 +1,0 @@
-{
-    "dotnet-test-explorer.testProjectPath": "**/*.Tests.csproj",
-    "dotnet.defaultSolution": "Inter.PlaneWrangler.sln"
-}
