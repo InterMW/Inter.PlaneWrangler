@@ -9,7 +9,6 @@
 
   <ItemGroup>
   		<PackageReference Include="MelbergFramework.Application" Version="8.0.8" />
-  		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="8.0.14" />
   		<PackageReference Include="MelbergFramework.Infrastructure.Redis" Version="8.0.9" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
@@ -20,7 +19,6 @@
     <ProjectReference Include="..\Infrastructure.InfluxDB\Infrastructure.InfluxDB.csproj" />
     <ProjectReference Include="..\Infrastructure.Redis\Infrastructure.Redis.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
-    <ProjectReference Include="..\Infrastructure.Rabbit\Infrastructure.Rabbit.csproj" />
   </ItemGroup>
   
 </Project>

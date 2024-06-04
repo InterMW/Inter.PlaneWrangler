@@ -2,13 +2,10 @@ using Application.Models;
 using Application.Pillars;
 using DomainService;
 using MelbergFramework.Application;
-using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.Redis;
 using Infrastructure.RepositoryCore;
 using Infrastructure.Redis.Repositories;
 using Infrastructure.Redis.Contexts;
-using Infrastructure.Rabbit.Publishers;
-using Infrastructure.Rabbit.Messages;
 using Common;
 using MelbergFramework.Core.Time;
 
@@ -30,8 +27,6 @@ public class AppRegistrator : Registrator
 
         RedisDependencyModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository,PlaneCacheContext>(services);
 
-        services.AddTransient<IPlaneFramePublisher,PlaneFramePublisher>();
-        RabbitModule.RegisterPublisher<CompletedPlaneFrameMessage>(services);
         
         services.AddOptions<TimingsOptions>()
             .BindConfiguration(TimingsOptions.Timing)
