@@ -4,8 +4,6 @@ using DomainService;
 using MelbergFramework.Application;
 using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.InfluxDB;
-using Infrastructure.InfluxDB.Repositories;
-using Infrastructure.InfluxDB.Contexts;
 using MelbergFramework.Infrastructure.Redis;
 using Infrastructure.RepositoryCore;
 using Infrastructure.Redis.Repositories;
@@ -32,7 +30,6 @@ public class AppRegistrator : Registrator
         services.AddTransient<IAccessDomainService,AccessDomainService>();
 
         RedisDependencyModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository,PlaneCacheContext>(services);
-        InfluxDBDependencyModule.LoadInfluxDBRepository<IPlaneMetadataRepository,PlaneFrameMetadataRepository,InfluxDBContext>(services);
 
         services.AddTransient<IPlaneFramePublisher,PlaneFramePublisher>();
         RabbitModule.RegisterPublisher<CompletedPlaneFrameMessage>(services);
