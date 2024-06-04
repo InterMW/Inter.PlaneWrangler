@@ -3,7 +3,6 @@ using Application.Pillars;
 using DomainService;
 using MelbergFramework.Application;
 using MelbergFramework.Infrastructure.Rabbit;
-using MelbergFramework.Infrastructure.InfluxDB;
 using MelbergFramework.Infrastructure.Redis;
 using Infrastructure.RepositoryCore;
 using Infrastructure.Redis.Repositories;
