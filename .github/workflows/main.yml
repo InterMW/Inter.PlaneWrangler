@@ -13,7 +13,7 @@ jobs:
       PROJECT: Application/Application.csproj
       APPSETTINGS: Application/appsettings.json
       REPLACESETTINGS: Application/Deployment/appsettings.Production.json
-      TAG: interplanewranglenet8
+      TAG: interplanewrangler
     steps:
      - uses: actions/checkout@v2
      - 
@@ -49,7 +49,7 @@ jobs:
     needs: build-publish
     runs-on: ubuntu-latest
     env:
-      TAG: interplanewranglenet8
+      TAG: interplanewrangler
     steps:
      - name: SSH Command
     # uses: nekiro/ssh-job@e0d177751aced5bcaf110ce4d782a681e5e12856
