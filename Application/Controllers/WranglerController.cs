@@ -39,20 +39,32 @@ public class WranglerController
     [ProducesResponseType(typeof(PlaneFrameResponse),200)]
     public async Task<IActionResult> GetFrameAsync([FromQuery] long? time)
     {
+        try
+        {
+
         _logger.LogInformation("hit");
         time ??= MaxTime;
         
         //If the time is too high or too low, we won't have the answer
         if(time > MaxTime || time < MaxTime - _range)
         {
-            return new BadRequestResult();
+            _logger.LogInformation("hit not found");
+            return new NotFoundResult();
         }
 
         var results = await _service.RetrieveRecentPlaneFrame(time.Value);
 
         var result = new OkObjectResult(results.ToResponse());
         
+        _logger.LogInformation("I have successfully completed the request");
         return result;
+        }
+        catch(Exception e)
+        {
+            _logger.LogError(e.Message);
+        }
+
+        return new OkResult();
     }
     
     private long MaxTime =>

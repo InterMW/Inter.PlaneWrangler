@@ -13,7 +13,7 @@ public class Program
 
         // app.Run();
         ThreadPool.SetMinThreads(8, 8); //required
-        var cors = "CORS";
+        // var cors = "CORS";
 
         await MelbergHost
             .CreateHost<AppRegistrator>()
@@ -22,21 +22,24 @@ public class Program
                     {
                         _.AddControllers();
                         _.AddSwaggerGen();
-                        _.AddCors(options =>
-                        {
-                            options.AddPolicy(name: cors,
-                                              policy =>
-                                              {
-                                                  policy.WithOrigins("http://plane.centurionx.net", "https://plane.centurionx.net");
-                                              });
-                        });
+                        // _.AddCors(options =>
+                        // {
+                        //     options.AddPolicy(name: cors,
+                        //                       policy =>
+                        //                       {
+                        //                           policy.WithOrigins("https://api.centurionx.net","http://plane.centurionx.net", "https://plane.centurionx.net");
+                        //                       });
+                        // });
                     })
             .ConfigureApp(_ =>
                     {
                         _.UseSwagger();
                         _.UseSwaggerUI();
                         _.UseRouting();
-                        _.UseCors(cors);
+                        // _.UseCors(_ =>
+                        //         _.AllowAnyOrigin()
+                        //         .AllowAnyMethod()
+                        //         .AllowAnyHeader());
                         _.MapControllers();
                     })
             .Build()
