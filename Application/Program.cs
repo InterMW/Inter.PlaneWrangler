@@ -6,14 +6,7 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        // var builder = WebApplication.CreateBuilder(args);
-        // var app = builder.Build();
-
-        // app.MapGet("/wringler/test", () => "Hello World!");
-
-        // app.Run();
         ThreadPool.SetMinThreads(8, 8); //required
-        // var cors = "CORS";
 
         await MelbergHost
             .CreateHost<AppRegistrator>()
@@ -22,24 +15,12 @@ public class Program
                     {
                         _.AddControllers();
                         _.AddSwaggerGen();
-                        // _.AddCors(options =>
-                        // {
-                        //     options.AddPolicy(name: cors,
-                        //                       policy =>
-                        //                       {
-                        //                           policy.WithOrigins("https://api.centurionx.net","http://plane.centurionx.net", "https://plane.centurionx.net");
-                        //                       });
-                        // });
                     })
             .ConfigureApp(_ =>
                     {
                         _.UseSwagger();
                         _.UseSwaggerUI();
                         _.UseRouting();
-                        // _.UseCors(_ =>
-                        //         _.AllowAnyOrigin()
-                        //         .AllowAnyMethod()
-                        //         .AllowAnyHeader());
                         _.MapControllers();
                     })
             .Build()
