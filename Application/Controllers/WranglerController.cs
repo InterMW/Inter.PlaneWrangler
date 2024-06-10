@@ -9,7 +9,7 @@ using MelbergFramework.Core.Time;
 namespace Application;
 
 [ApiController]
-[Route("wringler")]
+[Route("wrangler")]
 public class WranglerController
 {
     private readonly long _offset;
