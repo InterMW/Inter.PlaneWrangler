@@ -1,32 +1,32 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Application.Responses;
 public class PlaneResponse 
 {
-    [JsonProperty("hexValue")] 
+    [JsonPropertyName("hexValue")] 
     public string HexValue {get; set;} = string.Empty;
-    [JsonProperty("squawk")]
+    [JsonPropertyName("squawk")]
     public string Squawk {get; set;} = string.Empty;
-    [JsonProperty("flight")]
+    [JsonPropertyName("flight")]
     public string Flight {get; set;} = string.Empty;
-    [JsonProperty("lat")]
+    [JsonPropertyName("lat")]
     public float? Latitude {get; set;}
-    [JsonProperty("lon")]
+    [JsonPropertyName("lon")]
     public float? Longitude {get; set;}
-    [JsonProperty("nucp")]
+    [JsonPropertyName("nucp")]
     public string Nucp {get; set;} = string.Empty;
-    [JsonProperty("altitude")]
+    [JsonPropertyName("altitude")]
     public int? Altitude {get; set;}
-    [JsonProperty("vert_rate")]
+    [JsonPropertyName("vert_rate")]
     public int? VerticleRate {get; set;}
-    [JsonProperty("track")]
+    [JsonPropertyName("track")]
     public int? Track {get; set;}
-    [JsonProperty("speed")]
+    [JsonPropertyName("speed")]
     public int? Speed {get; set;}
-    [JsonProperty("category")]
+    [JsonPropertyName("category")]
     public string Category {get; set;} = string.Empty;
-    [JsonProperty("messages")]
+    [JsonPropertyName("messages")]
     public string Messages {get; set;} = string.Empty;
-    [JsonProperty("rssi")] 
+    [JsonPropertyName("rssi")] 
     public float? Rssi {get;set;}
 }

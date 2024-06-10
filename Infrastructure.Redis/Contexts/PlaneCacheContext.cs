@@ -1,8 +1,10 @@
-using MelbergFramework.Core.Redis;
 using MelbergFramework.Infrastructure.Redis;
+using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Redis.Contexts;
 public class PlaneCacheContext : RedisContext
 {
-    public PlaneCacheContext(IRedisConfigurationProvider provider) : base(provider) { }
+    public PlaneCacheContext(
+            IOptions<RedisConnectionOptions<PlaneCacheContext>> options,
+            IConnector connector) : base(options.Value, connector) { }
 }

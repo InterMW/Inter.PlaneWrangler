@@ -8,7 +8,7 @@ public class PlaneFrameMessage : StandardMessage
     [JsonProperty("now")]
     public double Now {get; set;}
     [JsonProperty("aircraft")]
-    public AirplaneData[] Planes {get; set;} = Array.Empty<AirplaneData>();
+    public AirplaneData[] Planes {get; set;}
     [JsonProperty("source")]
     public string Source {get; set;} = string.Empty;
     [JsonProperty("antenna")]

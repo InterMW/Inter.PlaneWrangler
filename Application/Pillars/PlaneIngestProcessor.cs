@@ -25,9 +25,9 @@ public class PlaneIngestProcessor : IStandardConsumer
 
     public async Task ConsumeMessageAsync(Message message, CancellationToken ct) 
     {
-        var planeFrame = _translator.Translate(message);
+        var planeFrame = _translator.Translate(message)!;
         await _domainService.IngestPlaneFrameAsync(planeFrame.ToDomain());
 
-        _logger.LogInformation("Consumed plane frame from {node}", planeFrame.Source);
+//        _logger.LogInformation("Consumed plane frame from {node}", planeFrame.Source);
     }
 }
