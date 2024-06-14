@@ -23,6 +23,7 @@ jobs:
         tokenSuffix: '}'
         files: '["${{env.REPLACESETTINGS}}"]'
       env:
+        RABBIT_USER : ${{secrets.RABBIT_USER}}
         RABBIT_PASSWORD : ${{secrets.RABBIT_PASSWORD}}
         ONPREM_REDIS : ${{secrets.ONPREM_REDIS}}
         INFLUXDB_TOKEN : ${{secrets.INFLUXDB_TOKEN}}
