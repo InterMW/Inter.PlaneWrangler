@@ -18,6 +18,8 @@ public static class PlaneFrameMetadataMapper
         result.Tags["hostname"] = metadata.Hostname;
         result.Fields["total"] = metadata.Total;
         result.Fields["detailed"] = metadata.Detailed;
+        result.Fields["average_distance"] = metadata.AverageDistance;
+        result.Fields["max_distance"] = metadata.MaxDistance;
         result.Timestamp = metadata.Timestamp;
         return result;
     }
