@@ -4,7 +4,8 @@ using DomainService;
 using MelbergFramework.Application;
 using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.InfluxDB;
-using Infrastructure.InfluxDB.Repositories; using Infrastructure.InfluxDB.Contexts;
+using Infrastructure.InfluxDB.Repositories; 
+using Infrastructure.InfluxDB.Contexts;
 using MelbergFramework.Infrastructure.Redis;
 using Infrastructure.RepositoryCore;
 using Infrastructure.Redis.Repositories;
@@ -13,6 +14,7 @@ using Infrastructure.Rabbit.Publishers;
 using Infrastructure.Rabbit.Messages;
 using Common;
 using MelbergFramework.Core.Time;
+using Device.GrpcClient;
 
 namespace Application;
 
@@ -26,6 +28,7 @@ public class AppRegistrator : Registrator
             TickCommandProcessor,
             MelbergFramework.Infrastructure.Rabbit.Messages.TickMessage>(services, true);
 
+        DeviceGrpcDependencyModule.RegisterClient(services);
         services.AddTransient<IPlaneIngestDomainService,PlaneIngestDomainService>();
         services.AddTransient<ICompilerDomainService, CompilerDomainService>();
         services.AddTransient<IAccessDomainService,AccessDomainService>();
