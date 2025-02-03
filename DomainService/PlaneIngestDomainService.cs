@@ -2,6 +2,7 @@ using Device.Domain;
 using Device.GrpcClient;
 using Domain;
 using Infrastructure.RepositoryCore;
+using Microsoft.Extensions.Logging;
 
 namespace DomainService;
 public interface IPlaneIngestDomainService
@@ -12,12 +13,18 @@ public interface IPlaneIngestDomainService
 public class PlaneIngestDomainService(
         IDeviceGrpcClient client,
         IPlaneCacheRepository _planeCacheRepository,
-        IPlaneMetadataRepository _planeMetadataRepository
+        IPlaneMetadataRepository _planeMetadataRepository,
+        ILogger<PlaneIngestDomainService> logger
         ) : IPlaneIngestDomainService
 {
 
     public async Task IngestPlaneFrameAsync(PlaneFrame frame)
     {
+        if (frame.Planes.Count() == 0)
+        {
+            return;
+        }
+
         DeviceModel device = new();
 
         try
@@ -26,11 +33,18 @@ public class PlaneIngestDomainService(
         }
         catch (Device.Common.DeviceNotFoundException)
         {
-            Console.WriteLine("a");
+            logger.LogInformation("Did not process message from {device} because it was not registered", frame.Source);
             return;
         }
 
         await _planeCacheRepository.InsertNodePlaneFrameAsync(frame);
+
+        var planes = frame.Planes.Where(DetailedFilter);
+
+        if (planes.Count() == 0)
+        {
+            return;
+        }
 
         float originLatitude = device.Latitude;
         float originLongitude = device.Longitude;
@@ -39,9 +53,7 @@ public class PlaneIngestDomainService(
         float totalDistance = 0;
         float rssiSum = 0;
 
-        var planes = frame.Planes;
-
-        foreach(var plane in planes.Where(_ => _.Latitude is not null && _.Longitude is not null))
+        foreach (var plane in planes)
         {
             var planeLat = plane.Latitude!.Value;
             var planeLon = plane.Longitude!.Value;
@@ -54,7 +66,6 @@ public class PlaneIngestDomainService(
 
         float averageDistance = totalDistance / planes.Count();
 
-        Console.WriteLine($"average distance = {averageDistance}");
         await _planeMetadataRepository.LogPlaneMetadata(
             new PlaneFrameMetadata()
             {
