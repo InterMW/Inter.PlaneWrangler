@@ -75,17 +75,17 @@ public class PlaneIngestDomainService(
                             .Where(DetailedFilter)
                             .Count(),
                 MaxDistance = maxDistance,
-                AverageDistance = averageDistance,
+                AverageDistance = averageDistance, 
                 Antenna = frame.Antenna,
                 Hostname = frame.Source,
                 Timestamp = DateTime.UnixEpoch.AddSeconds(frame.Now)
             }
         );
     }
-
+    
     private float Distance(float lat, float lon, float lat2, float lon2) =>
 
-        (float)Math.Sqrt(Math.Pow(lat - lat2, 2) + Math.Pow(lon - lon2, 2));
+        (float)Math.Sqrt(Math.Pow(lat - lat2, 2) + Math.Pow(lon - lon2,2));
 
     private bool DetailedFilter(Plane plane) =>
         plane.Latitude.HasValue && plane.Longitude.HasValue;
