@@ -4,17 +4,17 @@ namespace Common;
 
 public class TimingsOptions
 {
-    public const string Timing = "Timing";
-    
+    public const string Section = "Timing";
+
     [Required]
-    [Range(1,60)]
-    public int CompilationOffsetSecs {get; set;}
-    
+    [Range(1, 60)]
+    public int CompilationOffsetSecs { get; set; }
+
     [Required]
-    [Range(1,60)]
-    public int CompilationDurationPredictionSecs {get; set;}
-    
+    [Range(1, 60)]
+    public int CompilationDurationPredictionSecs { get; set; }
+
     [Required]
-    [Range(15,60)]
-    public int PlaneDocLifetimesSecs {get; set;}
+    [Range(15, 60)]
+    public int PlaneDocLifetimesSecs { get; set; }
 }

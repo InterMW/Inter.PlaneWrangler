@@ -1,8 +1,10 @@
+using Common;
 using Device.Domain;
 using Device.GrpcClient;
 using Domain;
 using Infrastructure.RepositoryCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace DomainService;
 public interface IPlaneIngestDomainService
@@ -14,9 +16,11 @@ public class PlaneIngestDomainService(
         IDeviceGrpcClient client,
         IPlaneCacheRepository _planeCacheRepository,
         IPlaneMetadataRepository _planeMetadataRepository,
+        IOptions<MetadataOptions> metadataOptions,
         ILogger<PlaneIngestDomainService> logger
         ) : IPlaneIngestDomainService
 {
+    private readonly int _metadataScale = metadataOptions.Value.Scale;
 
     public async Task IngestPlaneFrameAsync(PlaneFrame frame)
     {
@@ -39,11 +43,35 @@ public class PlaneIngestDomainService(
 
         await _planeCacheRepository.InsertNodePlaneFrameAsync(frame);
 
-        var planes = frame.Planes.Where(DetailedFilter);
+        var metadata = new PlaneFrameMetadata()
+        {
+            Total = frame.Planes.Count(),
+            Detailed = frame
+                            .Planes
+                            .Where(DetailedFilter)
+                            .Count(),
+            Antenna = frame.Antenna,
+            Hostname = frame.Source,
+            Timestamp = DateTime.UnixEpoch.AddSeconds(frame.Now)
+        };
 
+        if (device.Latitude != 0 && device.Longitude != 0)
+        {
+            var planes = frame.Planes.Where(DetailedFilter);
+            metadata = AnnotateMetadataWithDistanceDetail(device, metadata, planes);
+        }
+
+        await _planeMetadataRepository.LogPlaneMetadata(metadata);
+    }
+
+    private PlaneFrameMetadata AnnotateMetadataWithDistanceDetail(
+            DeviceModel device,
+            PlaneFrameMetadata frame,
+            IEnumerable<TimeAnotatedPlane> planes)
+    {
         if (planes.Count() == 0)
         {
-            return;
+            return frame;
         }
 
         float originLatitude = device.Latitude;
@@ -65,27 +93,15 @@ public class PlaneIngestDomainService(
         }
 
         float averageDistance = totalDistance / planes.Count();
+        
+        frame.MaxDistance = maxDistance * _metadataScale;
+        frame.AverageDistance = averageDistance * _metadataScale;
 
-        await _planeMetadataRepository.LogPlaneMetadata(
-            new PlaneFrameMetadata()
-            {
-                Total = frame.Planes.Count(),
-                Detailed = frame
-                            .Planes
-                            .Where(DetailedFilter)
-                            .Count(),
-                MaxDistance = maxDistance,
-                AverageDistance = averageDistance, 
-                Antenna = frame.Antenna,
-                Hostname = frame.Source,
-                Timestamp = DateTime.UnixEpoch.AddSeconds(frame.Now)
-            }
-        );
+        return frame;
     }
-    
-    private float Distance(float lat, float lon, float lat2, float lon2) =>
+    private static float Distance(float lat, float lon, float lat2, float lon2) =>
 
-        (float)Math.Sqrt(Math.Pow(lat - lat2, 2) + Math.Pow(lon - lon2,2));
+        (float)Math.Sqrt(Math.Pow(lat - lat2, 2) + Math.Pow(lon - lon2, 2));
 
     private bool DetailedFilter(Plane plane) =>
         plane.Latitude.HasValue && plane.Longitude.HasValue;
