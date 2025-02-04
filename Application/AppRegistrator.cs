@@ -39,8 +39,12 @@ public class AppRegistrator : Registrator
         services.AddTransient<IPlaneFramePublisher,PlaneFramePublisher>();
         RabbitModule.RegisterPublisher<CompletedPlaneFrameMessage>(services);
         
+        services.AddOptions<MetadataOptions>()
+            .BindConfiguration(MetadataOptions.Section)
+            .ValidateDataAnnotations();
+
         services.AddOptions<TimingsOptions>()
-            .BindConfiguration(TimingsOptions.Timing)
+            .BindConfiguration(TimingsOptions.Section)
             .ValidateDataAnnotations();
 
         services.AddSwaggerGen();
