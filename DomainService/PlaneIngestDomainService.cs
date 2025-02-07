@@ -86,8 +86,16 @@ public class PlaneIngestDomainService(
             var planeLat = plane.Latitude!.Value;
             var planeLon = plane.Longitude!.Value;
 
+
             rssiSum += plane.Rssi!.Value;
             var distance = Distance(originLatitude, originLongitude, plane.Latitude!.Value, plane.Longitude!.Value);
+
+
+            if(distance * _metadataScale > 50000 )
+            {
+                logger.LogWarning("Something weird is happening here for {name}: distance is {distance}, lat is {latitude}, lon is {longitude}", plane.Squawk, distance, planeLat, planeLon);
+            }
+
             maxDistance = float.Max(distance, maxDistance);
             totalDistance += distance;
         }
