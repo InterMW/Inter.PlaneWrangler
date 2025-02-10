@@ -94,6 +94,7 @@ public class PlaneIngestDomainService(
             if(distance * _metadataScale > 50000 )
             {
                 logger.LogWarning("Something weird is happening here for {name}: distance is {distance}, lat is {latitude}, lon is {longitude}", plane.Squawk, distance, planeLat, planeLon);
+                continue;
             }
 
             maxDistance = float.Max(distance, maxDistance);
