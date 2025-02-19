@@ -40,12 +40,10 @@ public class AppRegistrator : Registrator
         RabbitModule.RegisterPublisher<CompletedPlaneFrameMessage>(services);
         
         services.AddOptions<MetadataOptions>()
-            .BindConfiguration(MetadataOptions.Section)
-            .ValidateDataAnnotations();
+            .BindConfiguration(MetadataOptions.Section);
 
         services.AddOptions<TimingsOptions>()
-            .BindConfiguration(TimingsOptions.Section)
-            .ValidateDataAnnotations();
+            .BindConfiguration(TimingsOptions.Section);
 
         services.AddSwaggerGen();
 

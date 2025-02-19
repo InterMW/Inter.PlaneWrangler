@@ -1,8 +1,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+
+RUN apt-get -y update 
+RUN apt-get install -y clang zlib1g-dev
+
 WORKDIR /App
 
 # Copy everything
 COPY . ./
+
+
 # Restore as distinct layers
 RUN dotnet restore
 # Build and publish a release
