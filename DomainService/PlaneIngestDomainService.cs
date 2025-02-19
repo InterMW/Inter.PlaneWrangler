@@ -43,12 +43,11 @@ public class PlaneIngestDomainService(
 
         await _planeCacheRepository.InsertNodePlaneFrameAsync(frame);
 
+
         var metadata = new PlaneFrameMetadata()
         {
             Total = frame.Planes.Count(),
-            Detailed = frame
-                            .Planes
-                            .Where(DetailedFilter)
+            Detailed = frame.Planes.Where(DetailedFilter)
                             .Count(),
             Antenna = frame.Antenna,
             Hostname = frame.Source,
@@ -57,8 +56,8 @@ public class PlaneIngestDomainService(
 
         if (device.Latitude != 0 && device.Longitude != 0)
         {
-            var planes = frame.Planes.Where(DetailedFilter);
-            metadata = AnnotateMetadataWithDistanceDetail(device, metadata, planes);
+            var cleanedPlanes = frame.Planes.Where(DetailedFilter).Where(_ => Distance(_.Latitude!.Value, _.Longitude!.Value, device.Latitude!, device.Longitude!) < 6);
+            metadata = AnnotateMetadataWithDistanceDetail(device, metadata, cleanedPlanes);
         }
 
         await _planeMetadataRepository.LogPlaneMetadata(metadata);
@@ -74,6 +73,8 @@ public class PlaneIngestDomainService(
             return frame;
         }
 
+        frame.Detailed = planes.Count();
+
         float originLatitude = device.Latitude;
         float originLongitude = device.Longitude;
 
@@ -81,19 +82,22 @@ public class PlaneIngestDomainService(
         float totalDistance = 0;
         float rssiSum = 0;
 
+
         foreach (var plane in planes)
         {
             var planeLat = plane.Latitude!.Value;
             var planeLon = plane.Longitude!.Value;
 
+
             rssiSum += plane.Rssi!.Value;
             var distance = Distance(originLatitude, originLongitude, plane.Latitude!.Value, plane.Longitude!.Value);
+
             maxDistance = float.Max(distance, maxDistance);
             totalDistance += distance;
         }
 
         float averageDistance = totalDistance / planes.Count();
-        
+
         frame.MaxDistance = maxDistance * _metadataScale;
         frame.AverageDistance = averageDistance * _metadataScale;
 
